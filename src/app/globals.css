@@ -1,14 +1,37 @@
 :root {
+  /* ---- color ---- */
   --ink: #0b0c0e;
   --paper: #f5f4f1;
   --graphite: #8a8c90;
 
-  --font-display: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  --font-mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, "Cascadia Mono", monospace;
+  /* ---- type faces (face vars injected by next/font on <html>) ---- */
+  --font-display: var(--font-display-face), "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-mono-face), ui-monospace, "SF Mono", Menlo, monospace;
 
+  /* ---- fluid modular type scale (~1.25) — components use these, never raw rem ---- */
+  --step-mono: clamp(0.75rem, 0.71rem + 0.18vw, 0.8125rem);
+  --step-body: clamp(1rem, 0.95rem + 0.22vw, 1.125rem);
+  --step-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
+  --step-h2: clamp(1.75rem, 1.4rem + 1.6vw, 2.75rem);
+  --step-h1: clamp(2.75rem, 2rem + 3.6vw, 5rem);
+
+  /* ---- grid ---- */
   --cols: 12;
   --cell: calc(100vw / var(--cols)); /* refined to clientWidth/cols in JS after hydration */
-  --line: rgba(245, 244, 241, 0.14);
+  --cell-bg: var(--cell); /* rounded px for the background gradient (crisp lines) */
+  --line-v: rgba(245, 244, 241, 0.07); /* columns = structure */
+  --line-h: rgba(245, 244, 241, 0.035); /* rows = whisper */
+  --grid-op: 0; /* animatable master; JS settles it in on load */
+
+  /* ---- space (multiples of the cell) ---- */
+  --space-l: calc(var(--cell) * 1.5);
+  --space-xl: calc(var(--cell) * 2.5);
+
+  /* ---- motion ---- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-reveal: 900ms;
+  --reveal-shift: 26px;
 
   color-scheme: dark;
 }
@@ -26,29 +49,41 @@ body {
   background: var(--ink);
   color: var(--paper);
   font-family: var(--font-display);
+  font-weight: 400;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
 
 ::selection { background: var(--paper); color: var(--ink); }
 a { color: inherit; text-decoration: none; }
 
-/* ---------- full-bleed background grid (square cells, spans the whole document) ---------- */
+/* ---------- background grid: recedes to a whisper, blooms on load / G-toggle ---------- */
 .grid-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  opacity: var(--grid-op);
+  transition: opacity 0.55s var(--ease-out-quint);
   background-image:
-    repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px var(--cell)),
-    repeating-linear-gradient(0deg,  var(--line) 0 1px, transparent 1px var(--cell));
+    repeating-linear-gradient(90deg, var(--line-v) 0 1px, transparent 1px var(--cell-bg)),
+    repeating-linear-gradient(0deg, var(--line-h) 0 1px, transparent 1px var(--cell-bg));
 }
-body.grid-x { --line: rgba(245, 244, 241, 0.4); }
+/* edge vignette: dissolves the grid into the ground so it never reads "graph paper to the edge" */
+.grid-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(135% 95% at 50% 32%, transparent 38%, var(--ink) 100%);
+}
+body.grid-x { --grid-op: 1 !important; --line-v: rgba(245,244,241,0.16); --line-h: rgba(245,244,241,0.09); }
 
 .content { position: relative; z-index: 2; }
 
-/* ---------- cell grid: columns AND rows are the background cell ---------- */
+/* ---------- cell grid ---------- */
 .cg {
   display: grid;
   grid-template-columns: repeat(var(--cols), var(--cell));
@@ -57,7 +92,8 @@ body.grid-x { --line: rgba(245, 244, 241, 0.4); }
 
 .mono {
   font-family: var(--font-mono);
-  letter-spacing: 0.14em;
+  font-size: var(--step-mono);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -69,8 +105,7 @@ body.grid-x { --line: rgba(245, 244, 241, 0.4); }
 .wl .snap { display: block; will-change: transform; }
 .wl .txt {
   display: block;
-  font-weight: 800;
-  letter-spacing: -0.045em;
+  color: var(--paper);
   white-space: nowrap;
   line-height: 1;
   font-size: clamp(3rem, 14vw, 12rem);
@@ -78,4 +113,59 @@ body.grid-x { --line: rgba(245, 244, 241, 0.4); }
 }
 @supports (text-box: trim-both cap alphabetic) {
   .wl .txt { text-box: trim-both cap alphabetic; }
+}
+
+/* ---------- scroll reveal (SSR-safe: only arms after JS sets the ready flag) ---------- */
+:root[data-reveal-ready] [data-reveal]:not([data-inview]) {
+  opacity: 0;
+  transform: translateY(var(--reveal-shift));
+}
+[data-reveal] {
+  transition:
+    opacity var(--dur-reveal) var(--ease-out-expo) var(--rvd, 0ms),
+    transform var(--dur-reveal) var(--ease-out-expo) var(--rvd, 0ms);
+}
+[data-reveal][data-inview] { opacity: 1; transform: none; }
+
+/* signature reveal — heading lines rise from behind a clip (use sparingly, one place) */
+.reveal-lines .ln { display: block; overflow: hidden; }
+.reveal-lines .ln > span {
+  display: block;
+  padding-bottom: 0.12em;
+  transform: translateY(110%);
+  transition: transform var(--dur-reveal) var(--ease-out-quint) var(--rvd, 0ms);
+}
+.reveal-lines[data-inview] .ln > span { transform: none; }
+
+/* ---------- finish ---------- */
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 3px;
+}
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: #26282b; }
+::-webkit-scrollbar-thumb:hover { background: #34363a; }
+
+/* inline link with an underline that sweeps in */
+.link {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.4s var(--ease-out-expo);
+}
+.link:hover, .link:focus-visible { background-size: 100% 1px; }
+
+/* Lenis (root mode) helpers */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .grid-bg { transition: none; }
+  [data-reveal], [data-reveal]:not([data-inview]) { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .reveal-lines .ln > span { transform: none !important; transition: none !important; }
+  * { scroll-behavior: auto !important; }
 }

@@ -320,7 +320,7 @@ export function TetrisFooter() {
             contato@luanandrade.me
           </a>
           <div className={`mono ${styles.links}`}>
-            <a href="#">Trabalho — Work</a>
+            <a href="/trabalho">Trabalho — Work</a>
             <a href="#">Sobre — About</a>
             <a href="#">LinkedIn ↗</a>
             <a href="#">Instagram ↗</a>

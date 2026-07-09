@@ -3,57 +3,32 @@
   min-height: 100dvh;
 }
 
+/* tiny label, top — one empty row above it for air */
 .eyebrow {
-  grid-area: 1 / 2 / 2 / 8;
+  grid-area: 2 / 2 / 3 / 10;
   align-self: end;
-  font-size: 0.66rem;
-  letter-spacing: 0.22em;
   color: var(--graphite);
-  display: flex;
-  gap: 1ch;
-  align-items: baseline;
   padding-bottom: 0.4rem;
 }
-.eyebrow b { opacity: 0.5; font-weight: 400; }
 
-.plate {
-  grid-area: 2 / 2 / 4 / 5;
-  align-self: start;
-  font-size: clamp(1.2rem, 3.5vw, 2.2rem);
-  letter-spacing: 0.02em;
-  color: var(--graphite);
-}
-
-.img {
-  grid-area: 1 / 8 / 4 / 13;
-  position: relative;
-  overflow: hidden;
-}
-.imgCanvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-
+/* the wordmark sits in the lower-middle: rows 1-3 breathe above it */
 .wl1 { grid-area: 4 / 2 / 6 / 12; }
 .wl2 { grid-area: 6 / 2 / 8 / 12; }
 
 .meta {
   grid-area: 8 / 2 / 9 / 13;
-  align-self: end;
+  align-self: center;
   display: flex;
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
+  color: var(--graphite);
 }
-.metacol {
-  font-size: 0.66rem;
-  letter-spacing: 0.14em;
-  line-height: 1.7;
-}
-.sub { display: block; color: var(--graphite); }
+.meta span:last-child { color: var(--paper); }
 
 @media (max-width: 639px) {
-  .eyebrow { grid-area: 1 / 1 / 2 / 7; }
-  .plate { grid-area: 2 / 1 / 4 / 4; }
-  .img { grid-area: 1 / 4 / 4 / 7; }
+  .eyebrow { grid-area: 2 / 1 / 3 / 7; }
   .wl1 { grid-area: 4 / 1 / 6 / 7; }
   .wl2 { grid-area: 6 / 1 / 8 / 7; }
-  .meta { grid-area: 8 / 1 / 10 / 7; flex-direction: column; }
+  .meta { grid-area: 8 / 1 / 10 / 7; flex-direction: column; align-self: start; }
 }

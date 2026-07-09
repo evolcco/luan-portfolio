@@ -1,24 +1,31 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { display, mono } from "./fonts";
 import { GridProvider } from "@/components/grid/GridProvider";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
+import { RevealObserver } from "@/components/motion/RevealObserver";
 import { Topbar } from "@/components/chrome/Topbar";
 
 export const metadata: Metadata = {
   title: "Luan Andrade — Diretor de Arte & Brand Specialist",
   description:
-    "Portfólio de Luan Andrade — direção de arte, marca e sistemas visuais. Um sistema, à mostra.",
+    "Direção de arte, marca e sistemas visuais. Dez anos transformando marcas com clareza e método.",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className={`${display.variable} ${mono.variable}`}>
       <body>
         <div className="grid-bg" aria-hidden />
+        <div className="grid-veil" aria-hidden />
+        <RevealObserver />
         <Topbar />
         <GridProvider>
-          <div className="content">{children}</div>
+          <SmoothScroll>
+            <div className="content">{children}</div>
+          </SmoothScroll>
         </GridProvider>
       </body>
     </html>

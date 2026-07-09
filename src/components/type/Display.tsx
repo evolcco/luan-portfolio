@@ -99,7 +99,11 @@ export function Display({
   return (
     <span ref={wlRef} className={`wl ${className ?? ""}`}>
       <span ref={snapRef} className="snap">
-        <span ref={txtRef} className="txt">
+        <span
+          ref={txtRef}
+          className="txt"
+          style={{ fontWeight: weight, letterSpacing: `${tracking}em` }}
+        >
           {text}
         </span>
       </span>
