@@ -1,50 +1,57 @@
 .case {
   position: relative;
-  min-height: calc(var(--cell) * 6);
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
 }
 
 .img {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
   z-index: 1;
+  overflow: hidden;
+}
+.imgEl {
+  object-fit: cover;
+  /* unified B&W grade */
+  filter: grayscale(1) contrast(1.04) brightness(1.05);
+}
+/* depth: a soft vignette so the type reads and edges dissolve into the ground */
+.grade {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(140% 130% at 50% 42%, transparent 55%, rgba(11, 12, 14, 0.45) 100%);
 }
 
 .over {
-  position: absolute;
-  inset: 0;
+  position: relative;
   z-index: 2;
+  width: 100%;
 }
 
 .tag {
   grid-area: 2 / 2 / 3 / 6;
   align-self: end;
-  font-size: 0.66rem;
-  letter-spacing: 0.2em;
   padding-bottom: 0.5rem;
 }
 
 .title {
-  grid-area: 2 / 2 / 5 / 13;
+  grid-area: 3 / 2 / 6 / 13;
   align-self: center;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 0.9;
-  font-size: clamp(2.6rem, 9vw, 7rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+  font-size: var(--step-h1);
 }
 
 .note {
-  grid-area: 5 / 2 / 6 / 8;
+  grid-area: 7 / 2 / 8 / 8;
   align-self: start;
-  font-size: 0.62rem;
-  letter-spacing: 0.14em;
   line-height: 1.7;
 }
 
 @media (max-width: 639px) {
   .tag { grid-area: 2 / 1 / 3 / 7; }
   .title { grid-area: 3 / 1 / 6 / 7; }
-  .note { grid-area: 6 / 1 / 8 / 7; }
+  .note { grid-area: 7 / 1 / 9 / 7; }
 }

@@ -1,10 +1,20 @@
+import Image from "next/image";
 import styles from "./Case.module.css";
-import { PlaceholderImage } from "@/components/media/PlaceholderImage";
 
 export function Case() {
   return (
     <section className={styles.case}>
-      <PlaceholderImage variant="split" className={styles.img} />
+      <div className={styles.img}>
+        <Image
+          src="/images/case-arch.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className={styles.imgEl}
+        />
+        <div className={styles.grade} aria-hidden />
+      </div>
+
       <div className={`cg ${styles.over}`}>
         <div
           className={`mono blend ${styles.tag}`}
@@ -27,8 +37,8 @@ export function Case() {
           data-reveal
           style={{ "--rvd": "180ms" } as React.CSSProperties}
         >
-          O texto usa mix-blend-mode: difference — inverte conforme o fundo. Sobre
-          a metade clara vira escuro; sobre a escura, claro. Nunca ilegível.
+          O texto inverte conforme o fundo (mix-blend-mode: difference). Sobre a
+          luz vira escuro; sobre a sombra, claro. Nunca ilegível.
         </div>
       </div>
     </section>
