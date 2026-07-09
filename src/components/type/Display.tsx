@@ -87,6 +87,7 @@ export function Display({
 
       snap.style.transformOrigin = "left center";
       snap.style.transform = `translate(${-inkLeft * s}px, ${vy}px) scaleX(${s.toFixed(4)})`;
+      wl.dataset.fit = ""; // reveal once fitted (no unfitted → fitted pop)
     };
 
     fit();

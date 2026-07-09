@@ -1,0 +1,82 @@
+.intro { position: relative; min-height: 82dvh; }
+
+.back {
+  grid-area: 1 / 2 / 2 / 5;
+  align-self: end;
+  color: var(--graphite);
+  padding-bottom: 0.4rem;
+}
+.k {
+  grid-area: 3 / 2 / 4 / 6;
+  align-self: end;
+  color: var(--graphite);
+  padding-bottom: 0.5rem;
+}
+.title { grid-area: 5 / 2 / 7 / 13; }
+.lead {
+  grid-area: 8 / 2 / 9 / 9;
+  align-self: start;
+  font-size: var(--step-lead);
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--paper) 82%, transparent);
+  max-width: 46ch;
+  text-wrap: balance;
+}
+
+.body { position: relative; padding-block: var(--space-l); }
+.p1, .p2 {
+  align-self: start;
+  font-size: var(--step-body);
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--paper) 74%, transparent);
+  max-width: 44ch;
+}
+.p1 { grid-area: 1 / 2 / 3 / 7; }
+.p2 { grid-area: 1 / 7 / 3 / 12; }
+
+.caps { grid-area: 4 / 2 / 8 / 12; display: contents; }
+.capsK { grid-area: 4 / 2 / 5 / 6; color: var(--graphite); align-self: end; padding-bottom: 0.6rem; }
+.capsList {
+  grid-area: 5 / 2 / 8 / 12;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 2.5rem;
+  border-top: 1px solid rgba(245, 244, 241, 0.16);
+  padding-top: 1.2rem;
+}
+.cap {
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-size: var(--step-h2);
+  line-height: 1.1;
+}
+
+.clients { position: relative; padding-block: var(--space-xl); }
+.clientsK { grid-area: 1 / 2 / 2 / 6; color: var(--graphite); align-self: end; padding-bottom: 0.6rem; }
+.clientsList {
+  grid-area: 2 / 2 / 5 / 13;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 2rem;
+  border-top: 1px solid rgba(245, 244, 241, 0.16);
+  padding-top: 1.2rem;
+}
+.client { color: color-mix(in srgb, var(--paper) 70%, transparent); font-size: var(--step-body); }
+.cta { grid-area: 6 / 2 / 7 / 8; align-self: start; font-size: var(--step-lead); color: var(--paper); }
+
+@media (max-width: 639px) {
+  .back { grid-area: 1 / 1 / 2 / 5; }
+  .k { grid-area: 3 / 1 / 4 / 7; }
+  .title { grid-area: 5 / 1 / 7 / 7; }
+  .lead { grid-area: 8 / 1 / 10 / 7; }
+  .p1 { grid-area: 1 / 1 / 3 / 7; }
+  .p2 { grid-area: 3 / 1 / 5 / 7; }
+  .capsK { grid-area: 6 / 1 / 7 / 7; }
+  .capsList { grid-area: 7 / 1 / 10 / 7; }
+  .cap { font-size: var(--step-lead); }
+  .clientsK { grid-area: 1 / 1 / 2 / 7; }
+  .clientsList { grid-area: 2 / 1 / 5 / 7; }
+  .cta { grid-area: 6 / 1 / 7 / 7; }
+}

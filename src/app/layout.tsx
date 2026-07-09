@@ -7,9 +7,18 @@ import { RevealObserver } from "@/components/motion/RevealObserver";
 import { Topbar } from "@/components/chrome/Topbar";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://luanandrade.me"),
   title: "Luan Andrade — Diretor de Arte & Brand Specialist",
   description:
     "Direção de arte, marca e sistemas visuais. Dez anos transformando marcas com clareza e método.",
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    siteName: "Luan Andrade",
+    title: "Luan Andrade — Diretor de Arte & Brand Specialist",
+    description: "Direção de arte, marca e sistemas visuais.",
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({

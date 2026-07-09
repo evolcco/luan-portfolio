@@ -3,8 +3,6 @@
 .back {
   grid-area: 1 / 2 / 2 / 5;
   align-self: end;
-  font-size: 0.66rem;
-  letter-spacing: 0.18em;
   color: var(--graphite);
   padding-bottom: 0.4rem;
 }
@@ -13,8 +11,6 @@
 .k {
   grid-area: 2 / 2 / 3 / 6;
   align-self: end;
-  font-size: 0.66rem;
-  letter-spacing: 0.2em;
   color: var(--graphite);
   padding-bottom: 0.5rem;
 }
@@ -22,10 +18,10 @@
 .h {
   grid-area: 3 / 2 / 5 / 12;
   align-self: start;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1;
-  font-size: clamp(1.8rem, 5vw, 3.4rem);
+  font-size: var(--step-h1);
   text-wrap: balance;
 }
 
@@ -40,21 +36,35 @@
   grid-template-columns: 3rem 1fr auto auto;
   align-items: baseline;
   gap: 1.5rem;
-  padding: 1.4rem 0;
+  padding: 1.5rem 0;
   border-top: 1px solid rgba(245, 244, 241, 0.16);
-  transition: padding-left 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.45s var(--ease-out-expo);
 }
 .list li:last-child .row { border-bottom: 1px solid rgba(245, 244, 241, 0.16); }
-.row:hover { padding-left: 1rem; }
 
-.idx { font-size: 0.66rem; letter-spacing: 0.14em; color: var(--graphite); }
+/* effect 1 — sibling dim */
+.list:hover .row { opacity: 0.4; }
+.list:hover .row:hover,
+.row:focus-visible { opacity: 1; }
+
+.idx { color: var(--graphite); }
+
+/* effect 2 — underline sweeps in under the title */
 .name {
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: -0.02em;
-  font-size: clamp(1.4rem, 3.4vw, 2.6rem);
+  font-size: var(--step-h2);
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.5s var(--ease-out-expo);
 }
+.row:hover .name,
+.row:focus-visible .name { background-size: 100% 1px; }
+
 .cat,
-.year { font-size: 0.66rem; letter-spacing: 0.14em; color: var(--graphite); }
+.year { color: var(--graphite); }
 
 @media (max-width: 639px) {
   .back { grid-area: 1 / 1 / 2 / 5; }

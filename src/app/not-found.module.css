@@ -1,0 +1,37 @@
+.nf { position: relative; min-height: 100dvh; }
+
+.k {
+  grid-area: 5 / 2 / 6 / 8;
+  align-self: end;
+  color: var(--graphite);
+  padding-bottom: 0.5rem;
+}
+.h {
+  grid-area: 6 / 2 / 8 / 12;
+  align-self: start;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-size: var(--step-h1);
+}
+.p {
+  grid-area: 8 / 2 / 9 / 7;
+  align-self: start;
+  font-size: var(--step-body);
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--paper) 74%, transparent);
+  max-width: 42ch;
+}
+.home {
+  grid-area: 9 / 2 / 10 / 6;
+  align-self: start;
+  padding-top: 0.8rem;
+  color: var(--paper);
+}
+
+@media (max-width: 639px) {
+  .k { grid-area: 5 / 1 / 6 / 7; }
+  .h { grid-area: 6 / 1 / 8 / 7; }
+  .p { grid-area: 8 / 1 / 10 / 7; }
+  .home { grid-area: 10 / 1 / 11 / 7; }
+}
