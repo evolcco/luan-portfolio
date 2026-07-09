@@ -14,8 +14,8 @@ export type CaseMeta = {
   client?: string;
   role?: string;
   summary: string;
-  /** PlaceholderImage variant for now; swap for a real asset path later. */
-  cover?: "radial" | "split";
+  /** Public path to the cover image, e.g. "/images/case-arch.jpg". */
+  cover?: string;
   metrics?: Metric[];
 };
 

@@ -1,13 +1,13 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Display } from "@/components/type/Display";
-import { PlaceholderImage } from "@/components/media/PlaceholderImage";
 import type { CaseMeta } from "@/lib/cases";
 import styles from "./CaseHeader.module.css";
 
 export function CaseHeader({ meta }: { meta: CaseMeta }) {
   return (
     <header className={`cg ${styles.header}`}>
-      <Link href="/trabalho" className={`mono ${styles.back}`}>
+      <Link href="/trabalho" className={`mono link ${styles.back}`}>
         ← Índice
       </Link>
       <div className={`mono ${styles.tag}`}>
@@ -15,7 +15,7 @@ export function CaseHeader({ meta }: { meta: CaseMeta }) {
         <span>{meta.year}</span>
       </div>
 
-      <Display text={meta.title} className={styles.title} />
+      <Display text={meta.title} weight={600} tracking={-0.02} className={styles.title} />
 
       <p className={styles.summary}>{meta.summary}</p>
 
@@ -35,7 +35,16 @@ export function CaseHeader({ meta }: { meta: CaseMeta }) {
       </dl>
 
       <div className={styles.cover}>
-        <PlaceholderImage variant={meta.cover ?? "radial"} className={styles.coverCanvas} />
+        {meta.cover ? (
+          <Image
+            src={meta.cover}
+            alt=""
+            fill
+            sizes="100vw"
+            priority
+            className={styles.coverImg}
+          />
+        ) : null}
       </div>
     </header>
   );
