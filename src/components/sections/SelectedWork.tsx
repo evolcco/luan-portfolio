@@ -31,20 +31,25 @@ export function SelectedWork() {
           key={c.slug}
           href={`/trabalho/${c.slug}`}
           className={`cg ${styles.item} ${i % 2 ? styles.flip : ""}`}
-          data-reveal
         >
-          <div className={styles.media}>
-            {c.cover ? (
-              <Image
-                src={c.cover}
-                alt=""
-                fill
-                sizes="(max-width: 639px) 100vw, 55vw"
-                className={styles.mediaImg}
-              />
-            ) : null}
+          <div className={styles.media} data-clip>
+            <div className={styles.mediaPar} data-parallax="0.05">
+              {c.cover ? (
+                <Image
+                  src={c.cover}
+                  alt=""
+                  fill
+                  sizes="(max-width: 639px) 100vw, 45vw"
+                  className={styles.mediaImg}
+                />
+              ) : null}
+            </div>
           </div>
-          <div className={styles.info}>
+          <div
+            className={styles.info}
+            data-reveal
+            style={{ "--rvd": "120ms" } as React.CSSProperties}
+          >
             <span className={`mono ${styles.cat}`}>
               {c.category} · {c.year}
             </span>

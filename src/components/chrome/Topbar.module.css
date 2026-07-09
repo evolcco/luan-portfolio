@@ -6,10 +6,11 @@
   justify-content: space-between;
   padding: 1rem var(--cell);
   font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.2em;
+  font-size: var(--step-mono);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #fff;
   mix-blend-mode: difference;
   pointer-events: none;
 }
+.home { pointer-events: auto; }

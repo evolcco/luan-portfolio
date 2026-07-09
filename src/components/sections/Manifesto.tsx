@@ -20,12 +20,12 @@ export function Manifesto() {
         </span>
       </h2>
 
-      <p className={styles.p1} data-reveal style={{ "--rvd": "140ms" } as React.CSSProperties}>
+      <p className={styles.p1} data-reveal style={{ "--rvd": "260ms" } as React.CSSProperties}>
         Comecei cedo, movido por curiosidade e pelo desejo de dominar tanto a
         ferramenta quanto a estratégia. Marca, campanha, produto: o método é o
         mesmo — estrutura a serviço da mensagem.
       </p>
-      <p className={styles.p2} data-reveal style={{ "--rvd": "220ms" } as React.CSSProperties}>
+      <p className={styles.p2} data-reveal style={{ "--rvd": "340ms" } as React.CSSProperties}>
         Trabalho no ponto onde estética e resultado se encontram. Menos ruído,
         mais decisão.
       </p>

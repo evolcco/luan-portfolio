@@ -11,7 +11,7 @@ export function RevealObserver() {
   useEffect(() => {
     const root = document.documentElement;
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const sel = "[data-reveal], .reveal-lines";
+    const sel = "[data-reveal], .reveal-lines, [data-clip]";
 
     root.dataset.revealReady = "";
 
@@ -31,7 +31,7 @@ export function RevealObserver() {
           }
         }
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.2 },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0 },
     );
 
     const observeAll = () =>

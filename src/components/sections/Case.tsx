@@ -4,14 +4,16 @@ import styles from "./Case.module.css";
 export function Case() {
   return (
     <section className={styles.case}>
-      <div className={styles.img}>
-        <Image
-          src="/images/case-arch.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className={styles.imgEl}
-        />
+      <div className={styles.img} data-clip>
+        <div className={styles.imgPar} data-parallax="0.08">
+          <Image
+            src="/images/case-arch.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            className={styles.imgEl}
+          />
+        </div>
         <div className={styles.grade} aria-hidden />
       </div>
 
@@ -33,7 +35,7 @@ export function Case() {
           qualquer imagem.
         </h2>
         <div
-          className={`mono blend ${styles.note}`}
+          className={`blend ${styles.note}`}
           data-reveal
           style={{ "--rvd": "180ms" } as React.CSSProperties}
         >

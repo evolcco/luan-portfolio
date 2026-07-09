@@ -3,10 +3,10 @@
 .back {
   grid-area: 1 / 2 / 2 / 5;
   align-self: end;
-  font-size: 0.66rem;
-  letter-spacing: 0.18em;
+  font-size: var(--step-mono);
+  letter-spacing: 0.1em;
   color: var(--graphite);
-  padding-bottom: 0.4rem;
+  padding-bottom: var(--label-gap);
   pointer-events: auto;
 }
 .back:hover { color: var(--paper); }
@@ -17,10 +17,10 @@
   justify-self: end;
   display: flex;
   gap: 1.2ch;
-  font-size: 0.66rem;
-  letter-spacing: 0.18em;
+  font-size: var(--step-mono);
+  letter-spacing: 0.1em;
   color: var(--graphite);
-  padding-bottom: 0.4rem;
+  padding-bottom: var(--label-gap);
 }
 
 .title { grid-area: 3 / 2 / 5 / 12; }
@@ -41,7 +41,7 @@
   display: flex;
   gap: 2rem;
   padding-top: 0.6rem;
-  font-size: 0.66rem;
+  font-size: var(--step-mono);
   letter-spacing: 0.1em;
 }
 .meta dt { color: var(--graphite); margin-bottom: 0.3rem; }

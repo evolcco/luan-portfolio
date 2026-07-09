@@ -1,8 +1,8 @@
 .chapter { position: relative; padding-block: calc(var(--cell) * 0.5); }
 .chapterK {
   grid-column: 2 / 5;
-  font-size: 0.66rem;
-  letter-spacing: 0.18em;
+  font-size: var(--step-mono);
+  letter-spacing: 0.1em;
   color: var(--graphite);
   display: flex;
   flex-direction: column;
@@ -12,18 +12,19 @@
 .chapterBody { grid-column: 5 / 11; }
 
 .h2 {
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.02;
-  font-size: clamp(1.4rem, 3.4vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  font-size: var(--step-h2);
   margin-bottom: 0.8rem;
   text-wrap: balance;
 }
 .p {
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: var(--step-body);
+  line-height: 1.5;
   color: color-mix(in srgb, var(--paper) 78%, transparent);
   max-width: 52ch;
+  text-wrap: pretty;
 }
 .p + .p { margin-top: 1rem; }
 
@@ -39,8 +40,8 @@
 .caption {
   grid-column: 2 / 8;
   margin-top: 0.6rem;
-  font-size: 0.6rem;
-  letter-spacing: 0.14em;
+  font-size: var(--step-micro);
+  letter-spacing: 0.1em;
   color: var(--graphite);
 }
 
@@ -58,13 +59,13 @@
 }
 .metric:first-child { grid-column-start: 2; }
 .metric b {
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.04em;
   font-size: clamp(2rem, 5vw, 3.4rem);
   font-variant-numeric: tabular-nums;
   line-height: 0.9;
 }
-.metric span { font-size: 0.6rem; letter-spacing: 0.14em; color: var(--graphite); }
+.metric span { font-size: var(--step-micro); letter-spacing: 0.1em; color: var(--graphite); }
 
 @media (max-width: 639px) {
   .chapterK, .chapterBody { grid-column: 1 / 7; }

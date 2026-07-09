@@ -4,6 +4,7 @@ import { display, mono } from "./fonts";
 import { GridProvider } from "@/components/grid/GridProvider";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { RevealObserver } from "@/components/motion/RevealObserver";
+import { Parallax } from "@/components/motion/Parallax";
 import { Topbar } from "@/components/chrome/Topbar";
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function RootLayout({
         <div className="grid-bg" aria-hidden />
         <div className="grid-veil" aria-hidden />
         <RevealObserver />
+        <Parallax />
         <Topbar />
         <GridProvider>
           <SmoothScroll>

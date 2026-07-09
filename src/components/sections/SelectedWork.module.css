@@ -12,7 +12,7 @@
   color: var(--graphite);
 }
 .all {
-  grid-column: 10 / 13;
+  grid-column: 10 / 12;
   justify-self: end;
 }
 
@@ -20,20 +20,30 @@
   padding-block: var(--space-l);
   align-items: center;
 }
+.item:first-of-type { padding-top: 0; }
 
 .media {
-  grid-column: 2 / 8;
+  grid-column: 2 / 7;
   aspect-ratio: 16 / 10;
   position: relative;
   overflow: hidden;
   background: #111214;
 }
+.mediaPar {
+  position: absolute;
+  inset: -8% 0;
+  will-change: transform;
+  transform: translate3d(0, var(--py, 0px), 0);
+}
 .mediaImg {
   object-fit: cover;
   filter: grayscale(1) contrast(1.04) brightness(1.02);
-  transition: transform 0.8s var(--ease-out-expo), filter 0.8s var(--ease-out-expo);
+  transform: scale(1.09);
+  transition: transform var(--dur-media, 1100ms) var(--ease-out-quint),
+    filter 0.8s var(--ease-out-expo);
 }
-.item:hover .mediaImg { transform: scale(1.035); filter: grayscale(1) contrast(1.06) brightness(1.08); }
+.media[data-inview] .mediaImg { transform: none; }
+.item:hover .mediaImg { transform: scale(1.05); filter: grayscale(1) contrast(1.06) brightness(1.08); }
 
 .info {
   grid-column: 8 / 12;
@@ -42,7 +52,7 @@
   gap: 0.9rem;
   align-self: center;
 }
-.flip .media { grid-column: 6 / 12; }
+.flip .media { grid-column: 7 / 12; }
 .flip .info { grid-column: 2 / 6; }
 
 .cat { color: var(--graphite); transition: color 0.35s var(--ease-out-expo); }
@@ -54,6 +64,10 @@
 }
 .view { color: var(--graphite); transition: color 0.35s var(--ease-out-expo); }
 .item:hover .cat, .item:hover .view { color: var(--paper); }
+
+@media (prefers-reduced-motion: reduce) {
+  .mediaImg { transform: none !important; transition: none !important; }
+}
 
 @media (max-width: 639px) {
   .k { grid-column: 1 / 7; }
