@@ -6,6 +6,7 @@ import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { RevealObserver } from "@/components/motion/RevealObserver";
 import { Parallax } from "@/components/motion/Parallax";
 import { Topbar } from "@/components/chrome/Topbar";
+import { SiteFooter } from "@/components/chrome/SiteFooter";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://luanandrade.me"),
@@ -54,6 +55,7 @@ export default function RootLayout({
           <SmoothScroll>
             <div className="content" id="conteudo">
               {children}
+              <SiteFooter />
             </div>
           </SmoothScroll>
         </GridProvider>

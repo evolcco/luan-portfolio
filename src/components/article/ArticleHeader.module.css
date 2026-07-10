@@ -10,7 +10,7 @@
   padding-bottom: var(--label-gap);
   pointer-events: auto;
 }
-.back:hover { color: var(--paper); }
+.back:hover { color: var(--accent, var(--paper)); }
 
 .topic {
   grid-area: 1 / 8 / 2 / 13;
@@ -19,7 +19,7 @@
   line-height: 1;
   font-size: var(--step-mono);
   letter-spacing: 0.1em;
-  color: var(--graphite);
+  color: var(--accent, var(--graphite));
   padding-bottom: var(--label-gap);
 }
 

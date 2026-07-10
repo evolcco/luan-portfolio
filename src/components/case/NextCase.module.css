@@ -11,7 +11,7 @@
   grid-column: 2 / 8;
   align-self: start;
   line-height: 1;
-  color: var(--graphite);
+  color: var(--accent, var(--graphite));
   transition: color 0.35s var(--ease-out-expo);
 }
 

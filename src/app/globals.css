@@ -59,6 +59,18 @@
   :root { --cols: 6; }
 }
 
+/* ---------- diário: a distinct blue reading space (set by DiarioTheme) ---------- */
+:root[data-space="diario"] {
+  --ink: #0a1426; /* deep navy ground */
+  --paper: #eef2f9; /* cool paper */
+  --graphite: #7c8bab; /* blue-grey labels */
+  --graphite-ink: #5b6a89;
+  --rule: rgba(190, 210, 245, 0.16);
+  --line-v: rgba(150, 180, 240, 0.1);
+  --line-h: rgba(150, 180, 240, 0.05);
+  --accent: #6f9bff; /* the blue pop — kickers, active states */
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; }
 
@@ -73,6 +85,9 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  transition:
+    background-color 0.5s var(--ease-out-expo),
+    color 0.5s var(--ease-out-expo);
 }
 
 ::selection { background: var(--paper); color: var(--ink); }
