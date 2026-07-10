@@ -5,26 +5,27 @@
  * echoing the original loading-skeleton concept. Both draw in currentColor.
  */
 
-/* ---------- brand mark: same 4×4 module, different arrangements ---------- */
+/* ---------- brand mark: one bold offset, reconfigured across the 4×4 module ----------
+   Two thick bars shifted against each other — a confident interlocking step. The same
+   move (offset) reorganized in four orientations proves the system, not just a logo. */
 const PATTERNS: Record<string, string[]> = {
   // rows top→bottom, '#' = filled module
-  path: ["##..", ".##.", "..##", "...#"],
-  block: ["##..", "##..", "..#.", "...."],
-  spine: [".##.", ".##.", ".##.", ".##."],
-  step: ["#...", "##..", ".##.", "..##"],
-  dot: ["....", ".##.", ".##.", "...."],
+  hr: ["###.", "###.", ".###", ".###"], // offset →
+  hl: [".###", ".###", "###.", "###."], // offset ←
+  vd: ["##..", "####", "####", "..##"], // offset ↓
+  vu: ["..##", "####", "####", "##.."], // offset ↑
 };
 
 export function BrandMark({
-  variant = "path",
+  variant = "hr",
   wordmark = false,
 }: {
   variant?: keyof typeof PATTERNS;
   wordmark?: boolean;
 }) {
-  const rows = PATTERNS[variant] ?? PATTERNS.path;
-  const u = 22; // module size
-  const gap = 3;
+  const rows = PATTERNS[variant] ?? PATTERNS.hr;
+  const u = 24; // module size
+  const gap = 2; // tight — the bars read as solid mass, grid still legible
   const cells: React.ReactNode[] = [];
   rows.forEach((r, y) =>
     r.split("").forEach((c, x) => {
@@ -36,7 +37,7 @@ export function BrandMark({
             y={y * (u + gap)}
             width={u}
             height={u}
-            rx={1.5}
+            rx={1}
             fill="currentColor"
           />,
         );
@@ -45,10 +46,10 @@ export function BrandMark({
   const dim = 4 * u + 3 * gap;
   return (
     <svg
-      viewBox={`0 0 ${dim} ${wordmark ? dim + 34 : dim}`}
+      viewBox={`0 0 ${dim} ${wordmark ? dim + 32 : dim}`}
       role="img"
       aria-hidden
-      style={{ width: "58%", height: "auto", color: "inherit" }}
+      style={{ width: "64%", height: "auto", color: "inherit" }}
     >
       {cells}
       {wordmark ? (
