@@ -28,6 +28,7 @@
 .k {
   grid-area: 2 / 2 / 3 / 9;
   align-self: end;
+  line-height: 1;
   color: var(--graphite-ink);
   padding-bottom: var(--label-gap);
 }
@@ -61,8 +62,9 @@
   justify-content: space-between;
   gap: 1.5rem;
   flex-wrap: wrap;
+  line-height: 1;
   border-top: 1px solid rgba(11, 12, 14, 0.16);
-  padding-top: var(--space-s);
+  padding-top: 1.15rem;
 }
 .links, .social { display: flex; gap: 1.4rem; }
 .copy { color: var(--graphite-ink); white-space: nowrap; }

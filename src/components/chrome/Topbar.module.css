@@ -4,9 +4,10 @@
   z-index: 60;
   display: flex;
   justify-content: space-between;
-  padding: 1rem var(--cell);
+  padding: 1.15rem var(--cell);
   font-family: var(--font-mono);
   font-size: var(--step-mono);
+  line-height: 1;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #fff;

@@ -1,3 +1,12 @@
+@import url("https://use.typekit.net/sfu0xrd.css");
+
+/* animatable weight axis for the variable wordmark */
+@property --wght {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 560;
+}
+
 :root {
   /* ---- color ---- */
   --ink: #0b0c0e;
@@ -6,8 +15,9 @@
   --graphite-ink: #5a5c60;
 
   /* ---- type faces (face vars injected by next/font on <html>) ---- */
-  --font-display: var(--font-display-face), "Helvetica Neue", Arial, sans-serif;
+  --font-display: "scale-variable", var(--font-display-face), "Helvetica Neue", Arial, sans-serif;
   --font-mono: var(--font-mono-face), ui-monospace, "SF Mono", Menlo, monospace;
+  --font-wordmark: "scale-variable", var(--font-display);
 
   /* ---- fluid modular type scale (~1.25) — components use these, never raw rem ---- */
   --step-micro: clamp(0.6875rem, 0.66rem + 0.12vw, 0.75rem);
@@ -118,7 +128,13 @@ body.grid-x { --grid-op: 1 !important; --line-v: rgba(245,244,241,0.16); --line-
   white-space: nowrap;
   line-height: 1;
   font-size: clamp(3rem, 14vw, 12rem);
+  font-family: var(--font-wordmark);
+  font-variation-settings: "wght" var(--wght, 560), "wdth" var(--wdth, 100);
   will-change: transform;
+}
+.wl .ltr {
+  display: inline-block;
+  font-variation-settings: "wght" var(--wght, 560), "wdth" var(--wdth, 100);
 }
 @supports (text-box: trim-both cap alphabetic) {
   .wl .txt { text-box: trim-both cap alphabetic; }

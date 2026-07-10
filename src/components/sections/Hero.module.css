@@ -5,6 +5,7 @@
 
 .eyebrow {
   color: var(--graphite);
+  line-height: 1;
   padding-bottom: var(--label-gap);
 }
 
@@ -13,17 +14,18 @@
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
+  line-height: 1;
   color: var(--graphite);
 }
 .meta span:last-child { color: var(--paper); }
 
 /* desktop: fold-safe rows — wordmark on 2-cell blocks (grid-lock kept), 1fr breath, meta pinned bottom */
 @media (min-width: 640px) {
-  .hero { grid-template-rows: repeat(5, var(--cell)) 1fr auto; }
+  .hero { grid-template-rows: repeat(5, var(--cell)) 1fr; }
   .eyebrow { grid-area: 1 / 2 / 2 / 10; align-self: end; }
   .wl1 { grid-area: 2 / 2 / 4 / 12; }
   .wl2 { grid-area: 4 / 2 / 6 / 12; }
-  .meta { grid-area: 7 / 2 / 8 / 12; align-self: end; padding-bottom: var(--space-s); }
+  .meta { grid-area: 6 / 2 / 7 / 12; align-self: end; padding-bottom: 1.5rem; }
 }
 
 @media (max-width: 639px) {

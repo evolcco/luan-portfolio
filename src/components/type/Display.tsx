@@ -17,6 +17,8 @@ export function Display({
   weight = 800,
   tracking = -0.045,
   fill = 1,
+  animateWeight = false,
+  condense = 100,
 }: {
   text: string;
   className?: string;
@@ -24,6 +26,10 @@ export function Display({
   tracking?: number;
   /** cap-height as a fraction of the cell-span (baseline stays on the bottom grid line). */
   fill?: number;
+  /** on load, each letter starts at a random variable weight and cascades to `weight`. */
+  animateWeight?: boolean;
+  /** width axis (wdth) — < 100 = true condensed (measured into the fit, not scaleX-flattened). */
+  condense?: number;
 }) {
   const wlRef = useRef<HTMLSpanElement>(null);
   const snapRef = useRef<HTMLSpanElement>(null);
@@ -37,7 +43,8 @@ export function Display({
 
     const mctx = document.createElement("canvas").getContext("2d");
     if (!mctx) return;
-    const fam = getComputedStyle(document.body).fontFamily;
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const fam = getComputedStyle(txt).fontFamily;
     const capOf = (F: number) => {
       mctx.font = `${weight} ${F}px ${fam}`;
       return mctx.measureText("H").actualBoundingBoxAscent;
@@ -63,7 +70,7 @@ export function Display({
       const F = (fill * H) / capR; // cap-height = fill × cell-span (baseline stays on the bottom line)
       txt.style.fontSize = `${F}px`;
 
-      mctx.font = `${weight} ${F}px ${fam}`;
+      mctx.font = `${weight} ${condense}% ${F}px ${fam}`;
       try {
         (mctx as CanvasRenderingContext2D & { letterSpacing?: string }).letterSpacing =
           `${tracking * F}px`;
@@ -93,12 +100,35 @@ export function Display({
       wl.dataset.fit = ""; // reveal once fitted (no unfitted → fitted pop)
     };
 
+    const letters = () => txt.querySelectorAll<HTMLElement>(".ltr");
+
+    // start each letter at a random weight (before the reveal), so the reveal opens mid-morph
+    if (animateWeight && !reduce) {
+      letters().forEach((l) => {
+        l.style.transition = "none";
+        l.style.setProperty("--wght", String(200 + Math.floor(Math.random() * 480)));
+      });
+    }
+
     fit();
+
+    // …then cascade every letter to the normalized weight
+    if (animateWeight && !reduce) {
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          letters().forEach((l, i) => {
+            l.style.transition = `--wght 1400ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 90}ms`;
+            l.style.setProperty("--wght", String(weight));
+          });
+        }),
+      );
+    }
+
     const ro = new ResizeObserver(fit);
     ro.observe(wl);
     if (document.fonts?.ready) document.fonts.ready.then(fit).catch(() => {});
     return () => ro.disconnect();
-  }, [text, weight, tracking, fill]);
+  }, [text, weight, tracking, fill, animateWeight, condense]);
 
   return (
     <span ref={wlRef} className={`wl ${className ?? ""}`}>
@@ -106,9 +136,26 @@ export function Display({
         <span
           ref={txtRef}
           className="txt"
-          style={{ fontWeight: weight, letterSpacing: `${tracking}em` }}
+          style={
+            {
+              "--wght": weight,
+              "--wdth": condense,
+              fontWeight: weight,
+              letterSpacing: `${tracking}em`,
+            } as React.CSSProperties
+          }
         >
-          {text}
+          {animateWeight
+            ? text.split("").map((ch, i) => (
+                <span
+                  key={i}
+                  className="ltr"
+                  style={{ "--wght": weight, "--wdth": condense } as React.CSSProperties}
+                >
+                  {ch === " " ? " " : ch}
+                </span>
+              ))
+            : text}
         </span>
       </span>
     </span>

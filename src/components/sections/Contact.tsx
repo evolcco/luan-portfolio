@@ -19,8 +19,10 @@ export function Contact() {
         <Display
           text="Vamos conversar."
           weight={600}
-          tracking={-0.025}
-          fill={0.82}
+          tracking={-0.02}
+          fill={0.66}
+          condense={70}
+          animateWeight
           className={styles.headline}
         />
 
