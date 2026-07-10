@@ -24,8 +24,8 @@
   pointer-events: auto;
 }
 
-/* below ~1024 the centered role crowds the nav — drop it, keep home + nav */
-@media (max-width: 1023px) and (min-width: 640px) {
+/* below ~1120 the centered role crowds the nav — drop it, keep home + nav */
+@media (max-width: 1119px) and (min-width: 640px) {
   .topbar { grid-template-columns: 1fr auto; }
   .role { display: none; }
 }
@@ -37,6 +37,10 @@
     padding-inline: 1rem;
   }
   .role { display: none; }
-  .nav { gap: 0.8rem; }
-  .nav a:first-child { display: none; }
+  .nav { gap: 0.9rem; }
+  /* keep the primary Trabalho link; drop the Contato anchor (reachable via footer) */
+  .nav a:last-child { display: none; }
+  /* real ~40px touch targets without changing the bar height */
+  .home,
+  .nav a { padding-block: 0.8rem; margin-block: -0.8rem; }
 }

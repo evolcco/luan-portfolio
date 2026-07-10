@@ -86,10 +86,16 @@
   .imgEl { transform: none !important; transition: none !important; }
 }
 
-@media (max-width: 639px) {
-  .tag { grid-area: 1 / 1 / 2 / 7; }
-  .title { grid-area: 3 / 1 / 4 / 7; }
-  .note { grid-area: 5 / 1 / 6 / 7; }
+/* tablet gap: the note's two min-width columns (18rem + 24rem) exceed the 10-cell
+   band and overflow — stack to one column. Also cap the display title. */
+@media (max-width: 1023px) {
   .note { grid-template-columns: 1fr; gap: 1.25rem; }
+  .title { font-size: clamp(2.2rem, 1rem + 4vw, 3.6rem); }
+}
+
+@media (max-width: 639px) {
+  .tag { grid-area: 1 / 1 / 2 / 7; padding-inline: var(--edge); }
+  .title { grid-area: 3 / 1 / 4 / 7; padding-inline: var(--edge); }
+  .note { grid-area: 5 / 1 / 6 / 7; padding-inline: var(--edge); }
   .steps { gap: 0.6rem; }
 }

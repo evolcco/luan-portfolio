@@ -90,11 +90,18 @@
   .title { transform: none !important; transition: none !important; }
 }
 
+/* tablet gap: the two-up gets cramped to ~4–5 cells — stack image over text */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .item { grid-auto-rows: auto; }
+  .media, .flip .media { grid-column: 2 / 12; }
+  .info, .flip .info { grid-column: 2 / 11; margin-top: 1.2rem; align-self: start; }
+}
+
 @media (max-width: 639px) {
-  .k { grid-column: 1 / 7; }
-  .all { grid-column: 1 / 7; justify-self: start; margin-top: 0.5rem; }
+  .k { grid-column: 1 / 7; padding-inline: var(--edge); }
+  .all { grid-column: 1 / 7; justify-self: start; margin-top: 0.5rem; padding: 8px var(--edge); }
   .media, .flip .media { grid-column: 1 / 7; }
-  .info, .flip .info { grid-column: 1 / 7; margin-top: 1.2rem; }
-  .item::before { left: 0; right: 0; }
+  .info, .flip .info { grid-column: 1 / 7; margin-top: 1.2rem; padding-inline: var(--edge); }
+  .item::before { left: var(--edge); right: var(--edge); }
   .summary { max-width: 34ch; }
 }

@@ -38,8 +38,13 @@
 .social { display: flex; gap: 1.4rem; }
 .copy { color: var(--graphite); white-space: nowrap; }
 
+/* tablet gap: the 3-group bar can't fit in the 10-cell content band — stack it */
+@media (max-width: 767px) and (min-width: 640px) {
+  .bar { flex-direction: column; gap: 1rem; align-items: flex-start; }
+}
+
 @media (max-width: 639px) {
   .top,
-  .bar { grid-column: 1 / 7; }
+  .bar { grid-column: 1 / 7; padding-inline: var(--edge); }
   .bar { flex-direction: column; gap: 1rem; }
 }

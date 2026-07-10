@@ -52,5 +52,6 @@
 
 @media (max-width: 639px) {
   .k, .title, .view { grid-column: 1 / 7; }
+  .k, .view { padding-inline: var(--edge); }
   .media { grid-column: 1 / 7; grid-row: auto; aspect-ratio: 16 / 10; margin-top: 0.5rem; }
 }

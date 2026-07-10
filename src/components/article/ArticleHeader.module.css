@@ -65,11 +65,20 @@
 }
 .coverImg { object-fit: cover; filter: grayscale(1) contrast(1.04) brightness(1.02); }
 
+/* tablet gap: give the title more rows (a shorter cap fits the width without scaleX squish)
+   and let a long deck grow without hitting the byline */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .title { grid-area: 2 / 2 / 5 / 13; }
+  .deck { grid-row: 5 / 7; }
+  .byline { grid-row: 7 / 8; }
+  .cover { grid-row: 8 / 13; }
+}
+
 @media (max-width: 639px) {
-  .back { grid-area: 1 / 1 / 2 / 4; }
-  .topic { grid-area: 1 / 4 / 2 / 7; }
-  .title { grid-area: 3 / 1 / 5 / 7; }
-  .deck { grid-area: 5 / 1 / 7 / 7; max-width: none; }
-  .byline { grid-area: 7 / 1 / 8 / 7; }
-  .cover { grid-area: 8 / 1 / 13 / 7; }
+  .back { grid-area: 1 / 1 / 2 / 4; padding-inline: var(--edge); }
+  .topic { grid-area: 1 / 4 / 2 / 7; padding-inline: var(--edge); }
+  .title { grid-area: 3 / 1 / 4 / 7; }
+  .deck { grid-area: 4 / 1 / 6 / 7; max-width: none; padding-inline: var(--edge); }
+  .byline { grid-area: 6 / 1 / 7 / 7; padding-inline: var(--edge); }
+  .cover { grid-area: 7 / 1 / 12 / 7; }
 }

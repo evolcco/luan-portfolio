@@ -55,11 +55,17 @@
 }
 .coverImg { object-fit: cover; filter: grayscale(1) contrast(1.04) brightness(1.02); }
 
+/* tablet gap: give the Cliente/Atuação meta more room so it doesn't stack tall next to the summary */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .meta { grid-area: 5 / 7 / 6 / 13; gap: 1.4rem; flex-wrap: wrap; }
+}
+
 @media (max-width: 639px) {
-  .back { grid-area: 1 / 1 / 2 / 5; }
-  .tag { grid-area: 1 / 5 / 2 / 7; }
-  .title { grid-area: 3 / 1 / 5 / 7; }
-  .summary { grid-area: 5 / 1 / 7 / 7; }
-  .meta { grid-area: 7 / 1 / 8 / 7; }
-  .cover { grid-area: 8 / 1 / 12 / 7; }
+  .back { grid-area: 1 / 1 / 2 / 5; padding-inline: var(--edge); display: inline-flex; align-items: center; min-height: 40px; }
+  .tag { grid-area: 1 / 5 / 2 / 7; padding-inline: var(--edge); }
+  /* one row so long titles (e.g. "Saúde Individualizada") don't scaleX-squish to a smear */
+  .title { grid-area: 3 / 1 / 4 / 7; }
+  .summary { grid-area: 4 / 1 / 6 / 7; padding-inline: var(--edge); }
+  .meta { grid-area: 6 / 1 / 7 / 7; padding-inline: var(--edge); }
+  .cover { grid-area: 7 / 1 / 12 / 7; }
 }

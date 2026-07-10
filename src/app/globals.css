@@ -43,6 +43,7 @@
   --space-l: calc(var(--cell) * 1.5);
   --space-xl: calc(var(--cell) * 2.5);
   --gg: clamp(0.5rem, 1.1vw, 1rem); /* gallery gutter */
+  --edge: clamp(1rem, 4.5vw, 1.35rem); /* mobile side gutter for text (grid stays full-bleed) */
 
   /* ---- motion ---- */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);

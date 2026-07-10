@@ -127,8 +127,14 @@
 }
 .noteBody p { margin: 0; }
 
+/* tablet gap: prose at 3/10 leaves a big dead right margin — center the measure */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .measure { justify-items: center; }
+  .measure > * { grid-column: 2 / 12; }
+}
+
 @media (max-width: 639px) {
   .measure > *,
   .pull,
-  .note { grid-column: 1 / 7; max-width: none; }
+  .note { grid-column: 1 / 7; max-width: none; padding-inline: var(--edge); }
 }
