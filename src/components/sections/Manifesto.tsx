@@ -1,10 +1,11 @@
+import Link from "next/link";
 import styles from "./Manifesto.module.css";
 
 export function Manifesto() {
   return (
     <section className={`cg ${styles.manifesto}`}>
       <div className={`mono ${styles.k}`} data-reveal style={{ "--rvd": "0ms" } as React.CSSProperties}>
-        Sobre
+        Sobre mim
       </div>
 
       {/* signature reveal — lines rise from behind a clip */}
@@ -29,6 +30,10 @@ export function Manifesto() {
         Trabalho no ponto onde estética e resultado se encontram. Menos ruído,
         mais decisão.
       </p>
+
+      <Link href="/sobre" className={`mono link ${styles.more}`} data-reveal style={{ "--rvd": "420ms" } as React.CSSProperties}>
+        Sobre mim, completo ↗
+      </Link>
     </section>
   );
 }

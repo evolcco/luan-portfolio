@@ -31,7 +31,7 @@ export default function Sobre() {
         <div className={`mono ${styles.k}`} data-reveal style={{ "--rvd": "0ms" } as React.CSSProperties}>
           Sobre
         </div>
-        <Display text="Luan Andrade" weight={600} tracking={-0.02} className={styles.title} />
+        <Display text="Luan Andrade" weight={600} tracking={-0.025} fill={0.72} className={styles.title} />
         <p className={styles.lead} data-reveal style={{ "--rvd": "120ms" } as React.CSSProperties}>
           Diretor de arte e especialista em marcas. Dez anos dando clareza — da
           identidade à campanha, do produto à interface.

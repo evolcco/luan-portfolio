@@ -16,11 +16,14 @@ export function Display({
   className,
   weight = 800,
   tracking = -0.045,
+  fill = 1,
 }: {
   text: string;
   className?: string;
   weight?: number;
   tracking?: number;
+  /** cap-height as a fraction of the cell-span (baseline stays on the bottom grid line). */
+  fill?: number;
 }) {
   const wlRef = useRef<HTMLSpanElement>(null);
   const snapRef = useRef<HTMLSpanElement>(null);
@@ -57,7 +60,7 @@ export function Display({
       const H = wl.clientHeight;
       if (!H) return;
       const CELL = cellPx();
-      const F = H / capR; // cap-height == the element's cell-height (integer rows)
+      const F = (fill * H) / capR; // cap-height = fill × cell-span (baseline stays on the bottom line)
       txt.style.fontSize = `${F}px`;
 
       mctx.font = `${weight} ${F}px ${fam}`;
@@ -74,7 +77,7 @@ export function Display({
       const cols = Math.min(Math.max(1, Math.round(inkW / CELL)), avail);
       const s = (cols * CELL) / inkW;
 
-      let vy = 0;
+      let vy = H * (1 - fill); // drop the shorter cap so its baseline seats on the bottom grid line
       if (!TB) {
         snap.style.transform = "none";
         const mk = document.createElement("i");
@@ -95,7 +98,7 @@ export function Display({
     ro.observe(wl);
     if (document.fonts?.ready) document.fonts.ready.then(fit).catch(() => {});
     return () => ro.disconnect();
-  }, [text, weight, tracking]);
+  }, [text, weight, tracking, fill]);
 
   return (
     <span ref={wlRef} className={`wl ${className ?? ""}`}>

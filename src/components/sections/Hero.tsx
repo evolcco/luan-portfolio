@@ -12,8 +12,8 @@ export function Hero() {
         Diretor de Arte — Brand Specialist
       </div>
 
-      <Display text="Luan" weight={600} tracking={-0.025} className={styles.wl1} />
-      <Display text="Andrade" weight={600} tracking={-0.025} className={styles.wl2} />
+      <Display text="Luan" weight={600} tracking={-0.025} fill={0.78} className={styles.wl1} />
+      <Display text="Andrade" weight={600} tracking={-0.025} fill={0.78} className={styles.wl2} />
 
       <div
         className={`mono ${styles.meta}`}

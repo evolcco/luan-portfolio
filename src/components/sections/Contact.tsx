@@ -20,6 +20,7 @@ export function Contact() {
           text="Vamos conversar."
           weight={600}
           tracking={-0.025}
+          fill={0.82}
           className={styles.headline}
         />
 

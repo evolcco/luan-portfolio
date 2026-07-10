@@ -45,16 +45,26 @@ export function SelectedWork() {
               ) : null}
             </div>
           </div>
-          <div
-            className={styles.info}
-            data-reveal
-            style={{ "--rvd": "120ms" } as React.CSSProperties}
-          >
-            <span className={`mono ${styles.cat}`}>
+          <div className={styles.info}>
+            <span
+              className={`mono ${styles.cat}`}
+              data-reveal
+              style={{ "--rvd": "120ms" } as React.CSSProperties}
+            >
               {c.category} · {c.year}
             </span>
-            <h3 className={styles.title}>{c.title}</h3>
-            <span className={`mono ${styles.view}`}>Ver case ↗</span>
+            <h3 className={`reveal-lines ${styles.title}`}>
+              <span className="ln" style={{ "--rvd": "180ms" } as React.CSSProperties}>
+                <span>{c.title}</span>
+              </span>
+            </h3>
+            <span
+              className={`mono ${styles.view}`}
+              data-reveal
+              style={{ "--rvd": "300ms" } as React.CSSProperties}
+            >
+              Ver case ↗
+            </span>
           </div>
         </Link>
       ))}
