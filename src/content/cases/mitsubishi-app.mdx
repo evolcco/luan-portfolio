@@ -1,61 +1,105 @@
 ---
 title: Mitsubishi APP
-category: UI/UX
+category: Produto · UI/UX
 year: 2023
-client: Mitsubishi · Ipsen
-role: Direção de Arte · UI Design
-summary: Um app de acompanhamento que traduz dados densos em ação clara — do primeiro toque à decisão.
+client: Mitsubishi Tanabe · Ipsen
+role: Direção de Arte · Product Design · Design System
+summary: Um app de acompanhamento reescrito para que cada tela carregue uma decisão — do primeiro toque ao registro.
 cover: /images/case-arch.jpg
 metrics:
-  - value: "+142%"
-    label: Engajamento
-  - value: "1.8s"
-    label: Tempo de carga
   - value: "+68%"
-    label: CTR
+    label: Conclusão de tarefa
+  - value: "1.8s"
+    label: Tempo até interativo
+  - value: "−41%"
+    label: Chamados de suporte
 ---
 
-{/* Narrativa placeholder — a estrutura já usa os componentes reais de case. */}
-
 <Lead>
-O produto entregava dados; o usuário precisava de direção. Reescrevemos a interface para que cada tela carregue uma decisão, não um relatório.
+O produto entregava dados e terceirizava a interpretação. Reescrevemos a interface para que cada tela carregue uma decisão — e devolva a próxima.
 </Lead>
 
-<Figure src="/images/case-berlin.jpg" alt="Tela inicial do app redesenhada" layout="full" ratio="21 / 9" caption="Fig. 01 — Entrada redesenhada: uma decisão por vez." />
-
-<Chapter n="01" title="O desafio">
-
-O produto acumulava informação sem hierarquia: o usuário recebia dados, não direção. A tela inicial competia por atenção em vez de guiar a próxima ação.
-
-O briefing pedia uma interface que parecesse simples sem ser rasa — precisão de leitura para um público que decide com base no que vê.
-
-</Chapter>
-
-<Duo
-  aSrc="/images/case-brutalist.jpg" aAlt="Hierarquia anterior" aCaption="Antes — dado sem direção."
-  bSrc="/images/case-arch.jpg" bAlt="Hierarquia redesenhada" bCaption="Depois — cada módulo com um trabalho."
+<DeviceFrame
+  kind="browser"
+  url="mitsubishi.app/hoje"
+  skeleton="dashboard"
+  caption="Painel — a decisão do dia em primeiro plano; o histórico, abaixo dela."
 />
 
-<Chapter n="02" title="A solução">
+<Chapter n="01" title="O problema">
 
-Redesenhamos em torno de um sistema de grid rígido: cada módulo com um trabalho, cada número com um lugar. Tipografia grotesca para os dados, mono para os rótulos.
+A versão anterior tratava toda informação como igual. Sete módulos disputavam a primeira tela, e o usuário saía dela com dados — não com direção.
 
-O fluxo de onboarding foi reduzido a três decisões. O resto some até ser necessário.
+O onboarding pedia quinze campos antes do primeiro valor. E, entre telas, cada componente seguia uma régua própria: o mesmo botão em três tamanhos, o mesmo dado com dois pesos.
 
 </Chapter>
 
-<Quote cite="Briefing do produto">
+<ScreenSet
+  kind="phone"
+  aSkel="detail" aCaption="Antes — dado sem hierarquia, tudo competindo."
+  bSkel="home" bCaption="Depois — um foco; o resto sob demanda."
+/>
+
+<Chapter n="02" title="A abordagem">
+
+Partimos de uma pergunta por tela: qual é a próxima decisão? Tudo que não respondia a ela foi adiado, agrupado ou removido.
+
+Um grid rígido deu lugar a cada coisa — dado, rótulo, ação. O fluxo de entrada caiu de quinze campos para três decisões.
+
+</Chapter>
+
+<Flow>
+  <Step n="01" title="Entrar">Um toque. A sessão reconhece; nada de formulário.</Step>
+  <Step n="02" title="Ler o hoje">A tela abre na única decisão do dia.</Step>
+  <Step n="03" title="Registrar">Confirmação em um gesto, com desfazer à mão.</Step>
+  <Step n="04" title="Acompanhar">O histórico vira contexto — não relatório.</Step>
+</Flow>
+
+<Chapter n="03" title="O sistema">
+
+Nada disso se sustenta sem sistema. Cada componente ganhou uma regra única, uma variante por estado e um lugar no grid.
+
+Tipografia grotesca para o dado, mono para o rótulo. A hierarquia é tonal: peso e espaço no lugar de cor.
+
+</Chapter>
+
+<SpecSheet>
+  <SpecRow label="Grade base" value="4 pt · 8 colunas no mobile" />
+  <SpecRow label="Tipografia" value="Grotesca p/ dado · Mono p/ rótulo" />
+  <SpecRow label="Alvo de toque" value="44 px, mínimo" />
+  <SpecRow label="Componentes" value="32 · uma variante por estado" />
+  <SpecRow label="Cor" value="Tonal — hierarquia sem paleta" />
+</SpecSheet>
+
+<ScreenSet
+  kind="phone"
+  stagger
+  aSkel="home" aCaption="Hoje — a decisão isolada."
+  bSkel="detail" bCaption="Detalhe — o dado com seu rótulo."
+  cSkel="confirm" cCaption="Registro — um gesto, reversível."
+/>
+
+<Quote cite="Briefing de produto">
 Uma interface que pareça simples sem ser rasa.
 </Quote>
 
-<Chapter n="03" title="O resultado">
+<Chapter n="04" title="O resultado">
 
-A clareza virou métrica. Menos toques até a ação, mais retorno ao app, e uma leitura que o time clínico validou de primeira.
+A clareza virou métrica. Menos toques até a ação, mais retorno ao app, e uma leitura que o time aprovou na primeira rodada.
+
+O sistema seguiu vivo depois da entrega: telas novas nascem do mesmo conjunto, sem redesenhar o que já funcionava.
 
 </Chapter>
 
+<DeviceFrame
+  kind="phone"
+  align="center"
+  skeleton="confirm"
+  caption="Tela final — uma decisão, pronta para o gesto."
+/>
+
 <Metrics>
-  <Metric value="+142%" label="Engajamento" />
-  <Metric value="1.8s" label="Tempo de carga" />
-  <Metric value="+68%" label="CTR" />
+  <Metric value="+68%" label="Conclusão de tarefa" />
+  <Metric value="1.8s" label="Tempo até interativo" />
+  <Metric value="−41%" label="Chamados de suporte" />
 </Metrics>

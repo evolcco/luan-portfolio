@@ -1,0 +1,134 @@
+/* article body top breathing after the masthead */
+.body { padding-block: var(--space-l) 0; }
+
+/* Reading-optimized prose. Each block is its own full-bleed grid row whose child
+   sits in a measured column (3/10, ~62ch); Pull/Figure/Quote break the measure wider. */
+.measure {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), var(--cell));
+}
+.measure > * {
+  grid-column: 3 / 10;
+  max-width: 64ch;
+}
+
+.p {
+  font-size: var(--step-body);
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--paper) 82%, transparent);
+  text-wrap: pretty;
+  margin-top: 1.2rem;
+}
+
+.h2 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.06;
+  font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.25rem);
+  text-wrap: balance;
+  margin-top: calc(var(--cell) * 0.9);
+}
+.h3 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-size: var(--step-lead);
+  margin-top: calc(var(--cell) * 0.55);
+}
+
+.ul,
+.ol {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  counter-reset: li;
+}
+.li {
+  position: relative;
+  padding-left: 1.7rem;
+  margin-top: 0.55rem;
+  font-size: var(--step-body);
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--paper) 82%, transparent);
+}
+.ul .li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--graphite);
+}
+.ol .li {
+  counter-increment: li;
+}
+.ol .li::before {
+  content: counter(li, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  font-family: var(--font-mono);
+  font-size: var(--step-micro);
+  letter-spacing: 0.05em;
+  color: var(--graphite);
+}
+
+.blockquote {
+  border-left: 1px solid var(--rule);
+  padding-left: 1.1rem;
+  margin-top: 1.2rem;
+  color: var(--graphite);
+  font-size: var(--step-body);
+  line-height: 1.6;
+}
+.blockquote p { margin: 0; }
+
+.hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin-block: var(--cell);
+}
+
+/* ---------- Pull: the one loud typographic beat, breaks the measure ---------- */
+.pullRow { padding-block: var(--space-l); }
+.pull { grid-column: 2 / 12; }
+.pull p {
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  font-size: clamp(1.9rem, 5.2vw, 3.6rem);
+  color: var(--paper);
+  text-wrap: balance;
+  margin: 0;
+  max-width: none;
+}
+.pullCite {
+  display: block;
+  margin-top: 1rem;
+  color: var(--graphite);
+}
+
+/* ---------- Note: quiet inset aside ---------- */
+.noteRow { padding-block: calc(var(--space-l) * 0.7); }
+.note {
+  grid-column: 3 / 10;
+  border-left: 2px solid var(--graphite-ink);
+  padding: 0.1rem 0 0.1rem 1.2rem;
+}
+.noteK {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: var(--step-mono);
+  letter-spacing: 0.1em;
+  color: var(--graphite);
+}
+.noteBody {
+  font-size: calc(var(--step-body) * 0.95);
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--paper) 62%, transparent);
+  max-width: 54ch;
+}
+.noteBody p { margin: 0; }
+
+@media (max-width: 639px) {
+  .measure > *,
+  .pull,
+  .note { grid-column: 1 / 7; max-width: none; }
+}

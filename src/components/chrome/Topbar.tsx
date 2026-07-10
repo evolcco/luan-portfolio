@@ -12,6 +12,7 @@ export function Topbar() {
       </span>
       <nav className={styles.nav} aria-label="Navegação principal">
         <Link href="/trabalho" className="link">Trabalho</Link>
+        <Link href="/diario" className="link">Diário</Link>
         <Link href="/sobre" className="link">Sobre</Link>
         <Link href="/#contato" className="link">Contato</Link>
       </nav>

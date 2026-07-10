@@ -42,6 +42,7 @@
   --space-s: 1rem;
   --space-l: calc(var(--cell) * 1.5);
   --space-xl: calc(var(--cell) * 2.5);
+  --gg: clamp(0.5rem, 1.1vw, 1rem); /* gallery gutter */
 
   /* ---- motion ---- */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
