@@ -9,7 +9,7 @@ export function Hero() {
         data-reveal
         style={{ "--rvd": "120ms" } as React.CSSProperties}
       >
-        Diretor de Arte — Brand Specialist
+        Diretor de Arte &amp; Brand Specialist
       </div>
 
       <Display text="Luan" weight={600} tracking={-0.025} fill={0.62} animateWeight className={styles.wl1} />
@@ -20,8 +20,13 @@ export function Hero() {
         data-reveal
         style={{ "--rvd": "520ms" } as React.CSSProperties}
       >
-        <span>Direção de arte · Marca · Sistemas visuais</span>
-        <span>Disponível 2026 ↗</span>
+        <span className={styles.disciplines}>Marca · Campanha · Produto</span>
+        <span className={styles.statement}>
+          Dez anos transformando complexidade em direção clara.
+        </span>
+        <a href="#contato" className={`link ${styles.availability}`}>
+          Disponível para projetos ↘
+        </a>
       </div>
     </section>
   );

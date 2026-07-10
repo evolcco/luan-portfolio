@@ -23,24 +23,31 @@ export function Case() {
           data-reveal
           style={{ "--rvd": "0ms" } as React.CSSProperties}
         >
-          Case / Identidade
+          Método / 01—03
         </div>
         <h2
           className={`blend ${styles.title}`}
           data-reveal
           style={{ "--rvd": "100ms" } as React.CSSProperties}
         >
-          Legível sobre
+          Estrutura antes
           <br />
-          qualquer imagem.
+          do gesto.
         </h2>
         <div
           className={`blend ${styles.note}`}
           data-reveal
           style={{ "--rvd": "180ms" } as React.CSSProperties}
         >
-          O texto inverte conforme o fundo (mix-blend-mode: difference). Sobre a
-          luz vira escuro; sobre a sombra, claro. Nunca ilegível.
+          <p>
+            Cada projeto começa reduzindo ruído. O sistema vem antes da forma —
+            para que cada escolha tenha função, continuidade e consequência.
+          </p>
+          <ol className={styles.steps} aria-label="Etapas do método">
+            <li><span>01</span>Diagnóstico</li>
+            <li><span>02</span>Sistema</li>
+            <li><span>03</span>Expressão</li>
+          </ol>
         </div>
       </div>
     </section>

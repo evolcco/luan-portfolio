@@ -26,7 +26,11 @@ export function Contact() {
           className={styles.headline}
         />
 
-        <a href="mailto:contato@luanandrade.me" className={`${styles.mail} link`}>
+        <a
+          href="mailto:contato@luanandrade.me"
+          className={`${styles.mail} link`}
+          aria-label="Enviar e-mail para contato@luanandrade.me"
+        >
           contato@luanandrade.me
         </a>
 
@@ -44,10 +48,9 @@ export function Contact() {
             <Link href="/trabalho" className="link">Trabalho</Link>
             <Link href="/sobre" className="link">Sobre</Link>
           </div>
-          <div className={`mono ${styles.social}`}>
-            <a href="#" className="link">LinkedIn ↗</a>
-            <a href="#" className="link">Instagram ↗</a>
-            <a href="#" className="link">Behance ↗</a>
+          <div className={`mono ${styles.base}`}>
+            <span>São Paulo · Brasil</span>
+            <span>Remoto / Presencial</span>
           </div>
           <div className={`mono ${styles.copy}`}>© 2026 — Luan Andrade</div>
         </div>

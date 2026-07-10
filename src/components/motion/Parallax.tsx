@@ -15,10 +15,17 @@ export function Parallax() {
     )
       return;
 
-    const els = Array.from(
+    // live list — refreshed on DOM mutations so figures added on client-side
+    // navigation (e.g. a case route) get parallax too, not just those at mount
+    let els = Array.from(
       document.querySelectorAll<HTMLElement>("[data-parallax]"),
     );
-    if (!els.length) return;
+    const refresh = () =>
+      (els = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-parallax]"),
+      ));
+    const mo = new MutationObserver(refresh);
+    mo.observe(document.body, { childList: true, subtree: true });
 
     let raf = 0;
     let last = -1;
@@ -37,7 +44,10 @@ export function Parallax() {
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      mo.disconnect();
+    };
   }, []);
 
   return null;

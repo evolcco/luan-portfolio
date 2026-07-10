@@ -66,7 +66,8 @@
   border-top: 1px solid rgba(11, 12, 14, 0.16);
   padding-top: 1.15rem;
 }
-.links, .social { display: flex; gap: 1.4rem; }
+.links, .base { display: flex; gap: 1.4rem; }
+.base { color: var(--graphite-ink); }
 .copy { color: var(--graphite-ink); white-space: nowrap; }
 
 @media (max-width: 639px) {
@@ -76,4 +77,5 @@
   .mail { grid-area: 7 / 1 / 8 / 7; }
   .lead { grid-area: 8 / 1 / 10 / 7; }
   .foot { grid-area: 11 / 1 / 13 / 7; flex-direction: column; align-items: flex-start; }
+  .base { flex-direction: column; gap: 0.35rem; }
 }

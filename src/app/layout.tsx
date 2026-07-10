@@ -11,15 +11,29 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://luanandrade.me"),
   title: "Luan Andrade — Diretor de Arte & Brand Specialist",
   description:
-    "Direção de arte, marca e sistemas visuais. Dez anos transformando marcas com clareza e método.",
+    "Direção de arte, marca, campanha e produto. Dez anos transformando complexidade em direção clara.",
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "pt_BR",
     siteName: "Luan Andrade",
     title: "Luan Andrade — Diretor de Arte & Brand Specialist",
-    description: "Direção de arte, marca e sistemas visuais.",
+    description: "Dez anos transformando complexidade em direção clara.",
+    images: [
+      {
+        url: "/og.png",
+        width: 1730,
+        height: 909,
+        alt: "Luan Andrade — Diretor de Arte & Brand Specialist",
+      },
+    ],
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+    title: "Luan Andrade — Diretor de Arte & Brand Specialist",
+    description: "Marca · Campanha · Produto",
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({
@@ -28,6 +42,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${display.variable} ${mono.variable}`}>
       <body>
+        <a href="#conteudo" className="skip-link">
+          Pular para o conteúdo
+        </a>
         <div className="grid-bg" aria-hidden />
         <div className="grid-veil" aria-hidden />
         <RevealObserver />
@@ -35,7 +52,9 @@ export default function RootLayout({
         <Topbar />
         <GridProvider>
           <SmoothScroll>
-            <div className="content">{children}</div>
+            <div className="content" id="conteudo">
+              {children}
+            </div>
           </SmoothScroll>
         </GridProvider>
       </body>

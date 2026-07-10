@@ -31,6 +31,7 @@ export function SelectedWork() {
           key={c.slug}
           href={`/trabalho/${c.slug}`}
           className={`cg ${styles.item} ${i % 2 ? styles.flip : ""}`}
+          aria-label={`Ver case ${c.title}`}
         >
           <div className={styles.media} data-clip>
             <div className={styles.mediaPar} data-parallax="0.05">
@@ -46,22 +47,34 @@ export function SelectedWork() {
             </div>
           </div>
           <div className={styles.info}>
-            <span
-              className={`mono ${styles.cat}`}
+            <div
+              className={styles.topline}
               data-reveal
               style={{ "--rvd": "120ms" } as React.CSSProperties}
             >
-              {c.category} · {c.year}
-            </span>
+              <span className={`mono ${styles.cat}`}>
+                {c.category} · {c.year}
+              </span>
+              <span className={`mono ${styles.idx}`} aria-hidden>
+                / {String(i + 1).padStart(2, "0")}
+              </span>
+            </div>
             <h3 className={`reveal-lines ${styles.title}`}>
               <span className="ln" style={{ "--rvd": "180ms" } as React.CSSProperties}>
                 <span>{c.title}</span>
               </span>
             </h3>
+            <p
+              className={styles.summary}
+              data-reveal
+              style={{ "--rvd": "260ms" } as React.CSSProperties}
+            >
+              {c.summary}
+            </p>
             <span
               className={`mono ${styles.view}`}
               data-reveal
-              style={{ "--rvd": "300ms" } as React.CSSProperties}
+              style={{ "--rvd": "340ms" } as React.CSSProperties}
             >
               Ver case ↗
             </span>

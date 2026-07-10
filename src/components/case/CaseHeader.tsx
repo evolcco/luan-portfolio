@@ -15,7 +15,7 @@ export function CaseHeader({ meta }: { meta: CaseMeta }) {
         <span>{meta.year}</span>
       </div>
 
-      <Display text={meta.title} weight={600} tracking={-0.025} fill={0.82} className={styles.title} />
+      <Display text={meta.title} weight={600} tracking={-0.025} fill={0.62} className={styles.title} />
 
       <p className={styles.summary}>{meta.summary}</p>
 

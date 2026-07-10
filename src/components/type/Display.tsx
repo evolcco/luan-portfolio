@@ -70,7 +70,11 @@ export function Display({
       const F = (fill * H) / capR; // cap-height = fill × cell-span (baseline stays on the bottom line)
       txt.style.fontSize = `${F}px`;
 
-      mctx.font = `${weight} ${condense}% ${F}px ${fam}`;
+      // Ink shape ratios from a valid (stretch-free) canvas font. Canvas rejects a
+      // font-stretch axis ("70%") in the shorthand — it silently falls back to
+      // 10px sans-serif and measures garbage — so never put `%` here. Ratios are
+      // scale-invariant, so they hold for any wdth; canvas measures at the settled weight.
+      mctx.font = `${weight} ${F}px ${fam}`;
       try {
         (mctx as CanvasRenderingContext2D & { letterSpacing?: string }).letterSpacing =
           `${tracking * F}px`;
@@ -78,8 +82,24 @@ export function Display({
         /* older engines: measurement omits tracking, negligible */
       }
       const m = mctx.measureText(text);
-      const inkLeft = -m.actualBoundingBoxLeft;
-      const inkW = m.actualBoundingBoxRight + m.actualBoundingBoxLeft;
+      const caAdvance = m.width || 1;
+      const leftRatio = -m.actualBoundingBoxLeft / caAdvance;
+      const inkRatio = (m.actualBoundingBoxRight + m.actualBoundingBoxLeft) / caAdvance;
+
+      // True rendered advance from a hidden probe at the settled weight + wdth — canvas
+      // can't apply the variable width axis, so the DOM is the source of truth here.
+      const probe = document.createElement("span");
+      probe.textContent = text;
+      probe.style.cssText =
+        `position:absolute;left:-99999px;top:0;white-space:nowrap;visibility:hidden;` +
+        `font-family:${fam};font-size:${F}px;font-weight:${weight};letter-spacing:${tracking}em;` +
+        `font-variation-settings:"wght" ${weight},"wdth" ${condense}`;
+      document.body.appendChild(probe);
+      const advance = probe.getBoundingClientRect().width || caAdvance;
+      document.body.removeChild(probe);
+
+      const inkLeft = advance * leftRatio;
+      const inkW = advance * inkRatio;
       const avail = Math.max(1, Math.round(wl.clientWidth / CELL));
       const cols = Math.min(Math.max(1, Math.round(inkW / CELL)), avail);
       const s = (cols * CELL) / inkW;
@@ -124,10 +144,23 @@ export function Display({
       );
     }
 
+    let alive = true;
+    const refit = () => {
+      if (alive) fit();
+    };
     const ro = new ResizeObserver(fit);
     ro.observe(wl);
-    if (document.fonts?.ready) document.fonts.ready.then(fit).catch(() => {});
-    return () => ro.disconnect();
+    // `fonts.ready` can resolve before an @import'd variable font finishes downloading,
+    // so the first fit under-measures (canvas falls back to the narrower face) and the
+    // wordmark overflows. Explicitly wait for scale-variable, then re-fit.
+    if (document.fonts) {
+      document.fonts.ready.then(refit).catch(() => {});
+      document.fonts.load(`${weight} 100px "scale-variable"`).then(refit).catch(() => {});
+    }
+    return () => {
+      alive = false;
+      ro.disconnect();
+    };
   }, [text, weight, tracking, fill, animateWeight, condense]);
 
   return (

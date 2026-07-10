@@ -15,7 +15,13 @@ metrics:
     label: CTR
 ---
 
-{/* Conteúdo placeholder — substituir pela narrativa e assets reais do case. */}
+{/* Narrativa placeholder — a estrutura já usa os componentes reais de case. */}
+
+<Lead>
+O produto entregava dados; o usuário precisava de direção. Reescrevemos a interface para que cada tela carregue uma decisão, não um relatório.
+</Lead>
+
+<Figure src="/images/case-berlin.jpg" alt="Tela inicial do app redesenhada" layout="full" ratio="21 / 9" caption="Fig. 01 — Entrada redesenhada: uma decisão por vez." />
 
 <Chapter n="01" title="O desafio">
 
@@ -25,7 +31,10 @@ O briefing pedia uma interface que parecesse simples sem ser rasa — precisão 
 
 </Chapter>
 
-<Figure variant="split" caption="Fig. 01 — Antes / depois da hierarquia de entrada." />
+<Duo
+  aSrc="/images/case-brutalist.jpg" aAlt="Hierarquia anterior" aCaption="Antes — dado sem direção."
+  bSrc="/images/case-arch.jpg" bAlt="Hierarquia redesenhada" bCaption="Depois — cada módulo com um trabalho."
+/>
 
 <Chapter n="02" title="A solução">
 
@@ -35,7 +44,9 @@ O fluxo de onboarding foi reduzido a três decisões. O resto some até ser nece
 
 </Chapter>
 
-<Figure variant="radial" caption="Fig. 02 — Sistema de componentes e estados." />
+<Quote cite="Briefing do produto">
+Uma interface que pareça simples sem ser rasa.
+</Quote>
 
 <Chapter n="03" title="O resultado">
 

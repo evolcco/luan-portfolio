@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { getCase, getCaseSlugs } from "@/lib/cases";
+import { getAllCases, getCase, getCaseSlugs } from "@/lib/cases";
 import { mdxComponents } from "@/components/mdx/components";
 import { CaseHeader } from "@/components/case/CaseHeader";
+import { NextCase } from "@/components/case/NextCase";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -26,12 +27,17 @@ export default async function CasePage({ params }: Params) {
   const data = getCase(slug);
   if (!data) notFound();
 
+  const all = getAllCases();
+  const idx = all.findIndex((c) => c.slug === slug);
+  const next = all.length > 1 ? all[(idx + 1) % all.length] : null;
+
   return (
     <main>
       <CaseHeader meta={data.meta} />
       <article>
         <MDXRemote source={data.content} components={mdxComponents} />
       </article>
+      {next ? <NextCase meta={next} /> : null}
     </main>
   );
 }
