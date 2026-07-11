@@ -34,26 +34,23 @@
 
 .media {
   grid-column: 2 / 7;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   position: relative;
   overflow: hidden;
   background: #111214;
 }
+/* full artwork, no crop: box matches the 16:9 covers, image is contained,
+   and the parallax/zoom that clipped through overflow:hidden is disabled */
 .mediaPar {
   position: absolute;
-  inset: -8% 0;
-  will-change: transform;
-  transform: translate3d(0, var(--py, 0px), 0);
+  inset: 0;
 }
 .mediaImg {
-  object-fit: cover;
+  object-fit: contain;
   filter: contrast(1.04) brightness(1.02);
-  transform: scale(1.09);
-  transition: transform var(--dur-media, 1100ms) var(--ease-out-quint),
-    filter 0.8s var(--ease-out-expo);
+  transition: filter 0.8s var(--ease-out-expo);
 }
-.media[data-inview] .mediaImg { transform: none; }
-.item:hover .mediaImg { transform: scale(1.05); filter: contrast(1.06) brightness(1.08); }
+.item:hover .mediaImg { filter: contrast(1.06) brightness(1.08); }
 
 .info {
   grid-column: 8 / 12;
