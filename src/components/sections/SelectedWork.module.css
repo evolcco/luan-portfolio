@@ -47,13 +47,13 @@
 }
 .mediaImg {
   object-fit: cover;
-  filter: grayscale(1) contrast(1.04) brightness(1.02);
+  filter: contrast(1.04) brightness(1.02);
   transform: scale(1.09);
   transition: transform var(--dur-media, 1100ms) var(--ease-out-quint),
     filter 0.8s var(--ease-out-expo);
 }
 .media[data-inview] .mediaImg { transform: none; }
-.item:hover .mediaImg { transform: scale(1.05); filter: grayscale(1) contrast(1.06) brightness(1.08); }
+.item:hover .mediaImg { transform: scale(1.05); filter: contrast(1.06) brightness(1.08); }
 
 .info {
   grid-column: 8 / 12;

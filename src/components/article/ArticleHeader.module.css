@@ -63,7 +63,7 @@
   will-change: transform;
   transform: translate3d(0, var(--py, 0px), 0);
 }
-.coverImg { object-fit: cover; filter: grayscale(1) contrast(1.04) brightness(1.02); }
+.coverImg { object-fit: cover; filter: contrast(1.04) brightness(1.02); }
 
 /* tablet gap: give the title more rows (a shorter cap fits the width without scaleX squish)
    and let a long deck grow without hitting the byline */

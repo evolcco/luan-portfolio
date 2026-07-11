@@ -53,7 +53,7 @@
   overflow: hidden;
   background: #111214;
 }
-.coverImg { object-fit: cover; filter: grayscale(1) contrast(1.04) brightness(1.02); }
+.coverImg { object-fit: cover; filter: contrast(1.04) brightness(1.02); }
 
 /* tablet gap: give the Cliente/Atuação meta more room so it doesn't stack tall next to the summary */
 @media (min-width: 640px) and (max-width: 1023px) {

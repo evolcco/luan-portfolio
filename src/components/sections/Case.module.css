@@ -17,7 +17,7 @@
 }
 .imgEl {
   object-fit: cover;
-  filter: grayscale(1) contrast(1.04) brightness(1.05);
+  filter: contrast(1.04) brightness(1.05);
   transform: scale(1.12);
   transition: transform 1200ms var(--ease-out-quint);
 }
