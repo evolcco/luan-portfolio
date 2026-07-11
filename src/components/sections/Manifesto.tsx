@@ -14,7 +14,7 @@ export function Manifesto() {
           <span>Há dez anos dou forma</span>
         </span>
         <span className="ln" style={{ "--rvd": "90ms" } as React.CSSProperties}>
-          <span>a marcas — com direção de</span>
+          <span>a marcas, com direção de</span>
         </span>
         <span className="ln" style={{ "--rvd": "180ms" } as React.CSSProperties}>
           <span>arte, sistema e clareza.</span>
@@ -24,7 +24,7 @@ export function Manifesto() {
       <p className={styles.p1} data-reveal style={{ "--rvd": "260ms" } as React.CSSProperties}>
         Comecei cedo, movido por curiosidade e pelo desejo de dominar tanto a
         ferramenta quanto a estratégia. Marca, campanha, produto: o método é o
-        mesmo — estrutura a serviço da mensagem.
+        mesmo, estrutura a serviço da mensagem.
       </p>
       <p className={styles.p2} data-reveal style={{ "--rvd": "340ms" } as React.CSSProperties}>
         Trabalho no ponto onde estética e resultado se encontram. Menos ruído,

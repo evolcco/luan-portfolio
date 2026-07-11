@@ -14,6 +14,8 @@ import styles from "./mdx.module.css";
  */
 
 /* ---- shared media frame (exported — Figure / Duo / DeviceFrame / KV / Gallery build on it) ---- */
+const isVideo = (s: string) => /\.(mp4|webm|mov)$/i.test(s);
+
 export function MediaFrame({
   src,
   alt = "",
@@ -21,6 +23,7 @@ export function MediaFrame({
   sizes = "100vw",
   placeholder = "radial",
   parallax = "0.06",
+  poster,
   skeleton,
   fill = false,
   priority = false,
@@ -32,6 +35,8 @@ export function MediaFrame({
   sizes?: string;
   placeholder?: "radial" | "split";
   parallax?: string;
+  /** Poster frame for video sources; auto-derived from the .mp4 basename if omitted. */
+  poster?: string;
   skeleton?: string;
   fill?: boolean;
   priority?: boolean;
@@ -50,14 +55,29 @@ export function MediaFrame({
       ) : (
         <div className={styles.mediaPar} data-parallax={parallax}>
           {src ? (
-            <Image
-              src={src}
-              alt={alt}
-              fill
-              sizes={sizes}
-              priority={priority}
-              className={styles.mediaImg}
-            />
+            isVideo(src) ? (
+              <video
+                className={styles.mediaImg}
+                poster={poster ?? src.replace(/\.(mp4|webm|mov)$/i, ".jpg")}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label={alt || undefined}
+              >
+                <source src={src} />
+              </video>
+            ) : (
+              <Image
+                src={src}
+                alt={alt}
+                fill
+                sizes={sizes}
+                priority={priority}
+                className={styles.mediaImg}
+              />
+            )
           ) : (
             <PlaceholderImage variant={placeholder} className={styles.mediaCanvas} />
           )}

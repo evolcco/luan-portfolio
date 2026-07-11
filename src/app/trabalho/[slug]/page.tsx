@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllCases, getCase, getCaseSlugs } from "@/lib/cases";
 import { mdxComponents } from "@/components/mdx/components";
+import mdxStyles from "@/components/mdx/mdx.module.css";
 import { CaseHeader } from "@/components/case/CaseHeader";
 import { NextCase } from "@/components/case/NextCase";
 
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const data = getCase(slug);
   if (!data) return {};
   return {
-    title: `${data.meta.title} — Luan Andrade`,
+    title: `${data.meta.title}, Luan Andrade`,
     description: data.meta.summary,
   };
 }
@@ -34,7 +35,7 @@ export default async function CasePage({ params }: Params) {
   return (
     <main>
       <CaseHeader meta={data.meta} />
-      <article>
+      <article className={mdxStyles.colorScope}>
         <MDXRemote source={data.content} components={mdxComponents} />
       </article>
       {next ? <NextCase meta={next} /> : null}

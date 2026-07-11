@@ -12,7 +12,7 @@ export function Contact() {
           data-reveal
           style={{ "--rvd": "0ms" } as React.CSSProperties}
         >
-          Contato — vamos conversar
+          Contato, vamos conversar
         </div>
 
         <Display
@@ -38,7 +38,7 @@ export function Contact() {
           data-reveal
           style={{ "--rvd": "120ms" } as React.CSSProperties}
         >
-          Disponível para novos projetos em 2026. Marca, campanha, produto — vamos
+          Disponível para novos projetos em 2026. Marca, campanha, produto, vamos
           dar clareza ao próximo.
         </p>
       </div>

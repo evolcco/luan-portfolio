@@ -23,7 +23,7 @@ export function Case() {
           data-reveal
           style={{ "--rvd": "0ms" } as React.CSSProperties}
         >
-          Método / 01—03
+          Método / 01 a 03
         </div>
         <h2
           className={`blend ${styles.title}`}
@@ -40,7 +40,7 @@ export function Case() {
           style={{ "--rvd": "180ms" } as React.CSSProperties}
         >
           <p>
-            Cada projeto começa reduzindo ruído. O sistema vem antes da forma —
+            Cada projeto começa reduzindo ruído. O sistema vem antes da forma,
             para que cada escolha tenha função, continuidade e consequência.
           </p>
           <ol className={styles.steps} aria-label="Etapas do método">

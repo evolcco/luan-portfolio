@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const data = getArticle(slug);
   if (!data) return {};
   return {
-    title: `${data.meta.title} — Luan Andrade`,
+    title: `${data.meta.title}, Luan Andrade`,
     description: data.meta.summary ?? data.meta.deck,
   };
 }

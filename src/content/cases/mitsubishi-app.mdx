@@ -1,105 +1,91 @@
 ---
 title: Mitsubishi APP
-category: Produto · UI/UX
-year: 2023
-client: Mitsubishi Tanabe · Ipsen
-role: Direção de Arte · Product Design · Design System
-summary: Um app de acompanhamento reescrito para que cada tela carregue uma decisão — do primeiro toque ao registro.
-cover: /images/case-arch.jpg
+category: UX/UI
+year: 2018
+client: Mitsubishi Motors
+role: UX/UI Design · Direção de Arte
+summary: "App de lançamento do novo Eclipse Cross, explorar a linha, mergulhar nos features e ver o carro em realidade aumentada, na palma da mão."
+cover: /images/cases/mitsubishi-app/01.webp
 metrics:
-  - value: "+68%"
-    label: Conclusão de tarefa
-  - value: "1.8s"
-    label: Tempo até interativo
-  - value: "−41%"
-    label: Chamados de suporte
+  - value: "AR"
+    label: Realidade aumentada
+  - value: "Eclipse Cross"
+    label: Lançamento
+  - value: "iOS"
+    label: Plataforma
 ---
 
 <Lead>
-O produto entregava dados e terceirizava a interpretação. Reescrevemos a interface para que cada tela carregue uma decisão — e devolva a próxima.
+Lançar um carro pede desejo antes da concessionária. O app transforma o lançamento do Eclipse Cross em experiência: explorar a linha, entender cada feature e ver o carro em realidade aumentada, na palma da mão.
 </Lead>
 
-<DeviceFrame
-  kind="browser"
-  url="mitsubishi.app/hoje"
-  skeleton="dashboard"
-  caption="Painel — a decisão do dia em primeiro plano; o histórico, abaixo dela."
+<KV
+  src="/images/cases/mitsubishi-app/01.webp"
+  alt="Mitsubishi, o Eclipse Cross"
+  ratio="1920 / 1080"
+  label="UX/UI, 2018"
+  caption="Fig. 01, Preto, vermelho e o carro: a abertura pede atenção."
+  priority
 />
 
-<Chapter n="01" title="O problema">
+<Chapter n="01" title="O contexto">
 
-A versão anterior tratava toda informação como igual. Sete módulos disputavam a primeira tela, e o usuário saía dela com dados — não com direção.
+Um lançamento vive de expectativa. O desafio foi construir desejo no digital antes do test-drive, uma interface que apresentasse o Eclipse Cross com a mesma energia da campanha, sem virar catálogo.
 
-O onboarding pedia quinze campos antes do primeiro valor. E, entre telas, cada componente seguia uma régua própria: o mesmo botão em três tamanhos, o mesmo dado com dois pesos.
+Preto e vermelho, tipografia firme, imagem grande: a linguagem da marca traduzida para a tela.
 
 </Chapter>
 
-<ScreenSet
-  kind="phone"
-  aSkel="detail" aCaption="Antes — dado sem hierarquia, tudo competindo."
-  bSkel="home" bCaption="Depois — um foco; o resto sob demanda."
+<Figure
+  src="/images/cases/mitsubishi-app/02.webp"
+  alt="Chegou o Eclipse Cross"
+  layout="full"
+  ratio="1920 / 964"
+  caption="Fig. 02, Chegou o Eclipse Cross: a combinação do SUV com o high-tech."
 />
 
-<Chapter n="02" title="A abordagem">
+<Chapter n="02" title="A interface">
 
-Partimos de uma pergunta por tela: qual é a próxima decisão? Tudo que não respondia a ela foi adiado, agrupado ou removido.
-
-Um grid rígido deu lugar a cada coisa — dado, rótulo, ação. O fluxo de entrada caiu de quinze campos para três decisões.
+Catálogo, comparativo e detalhe de cada modelo, desenhados para o desejo, não para o formulário. A navegação conduz do panorama da linha ao carro específico em poucos toques.
 
 </Chapter>
 
-<Flow>
-  <Step n="01" title="Entrar">Um toque. A sessão reconhece; nada de formulário.</Step>
-  <Step n="02" title="Ler o hoje">A tela abre na única decisão do dia.</Step>
-  <Step n="03" title="Registrar">Confirmação em um gesto, com desfazer à mão.</Step>
-  <Step n="04" title="Acompanhar">O histórico vira contexto — não relatório.</Step>
-</Flow>
+<Figure
+  src="/images/cases/mitsubishi-app/03.webp"
+  alt="As telas do app, catálogo e modelos"
+  layout="wide"
+  ratio="1927 / 2720"
+  caption="Fig. 03, Do panorama ao detalhe: as telas do app."
+/>
 
-<Chapter n="03" title="O sistema">
+<Chapter n="03" title="Imersão em realidade aumentada">
 
-Nada disso se sustenta sem sistema. Cada componente ganhou uma regra única, uma variante por estado e um lugar no grid.
-
-Tipografia grotesca para o dado, mono para o rótulo. A hierarquia é tonal: peso e espaço no lugar de cor.
+O ápice: apontar o celular e ver o Eclipse Cross no espaço real. Ângulos, cores e features destacados na própria tela, a experiência que aproxima o carro de quem ainda não entrou nele.
 
 </Chapter>
 
-<SpecSheet>
-  <SpecRow label="Grade base" value="4 pt · 8 colunas no mobile" />
-  <SpecRow label="Tipografia" value="Grotesca p/ dado · Mono p/ rótulo" />
-  <SpecRow label="Alvo de toque" value="44 px, mínimo" />
-  <SpecRow label="Componentes" value="32 · uma variante por estado" />
-  <SpecRow label="Cor" value="Tonal — hierarquia sem paleta" />
-</SpecSheet>
-
-<ScreenSet
-  kind="phone"
-  stagger
-  aSkel="home" aCaption="Hoje — a decisão isolada."
-  bSkel="detail" bCaption="Detalhe — o dado com seu rótulo."
-  cSkel="confirm" cCaption="Registro — um gesto, reversível."
+<Figure
+  src="/images/cases/mitsubishi-app/05.webp"
+  alt="Imersão em realidade aumentada"
+  layout="wide"
+  ratio="1927 / 2338"
+  caption="Fig. 04, Imersão em realidade aumentada: o carro no seu espaço."
 />
 
-<Quote cite="Briefing de produto">
-Uma interface que pareça simples sem ser rasa.
+<Figure
+  src="/images/cases/mitsubishi-app/04.webp"
+  alt="Features e a linha completa"
+  layout="wide"
+  ratio="1927 / 2083"
+  caption="Fig. 05, Features e a linha, lado a lado."
+/>
+
+<Quote cite="Princípio do projeto">
+Um app de lançamento não vende ficha técnica, vende a vontade de dirigir.
 </Quote>
 
-<Chapter n="04" title="O resultado">
-
-A clareza virou métrica. Menos toques até a ação, mais retorno ao app, e uma leitura que o time aprovou na primeira rodada.
-
-O sistema seguiu vivo depois da entrega: telas novas nascem do mesmo conjunto, sem redesenhar o que já funcionava.
-
-</Chapter>
-
-<DeviceFrame
-  kind="phone"
-  align="center"
-  skeleton="confirm"
-  caption="Tela final — uma decisão, pronta para o gesto."
-/>
-
 <Metrics>
-  <Metric value="+68%" label="Conclusão de tarefa" />
-  <Metric value="1.8s" label="Tempo até interativo" />
-  <Metric value="−41%" label="Chamados de suporte" />
+  <Metric value="AR" label="Realidade aumentada" />
+  <Metric value="Eclipse Cross" label="Lançamento" />
+  <Metric value="iOS" label="Plataforma" />
 </Metrics>

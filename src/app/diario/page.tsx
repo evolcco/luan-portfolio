@@ -4,7 +4,7 @@ import { getAllArticles, formatDate } from "@/lib/articles";
 import styles from "@/app/trabalho/work.module.css";
 
 export const metadata: Metadata = {
-  title: "Diário — Luan Andrade",
+  title: "Diário, Luan Andrade",
   description: "Ensaios sobre design, sistema e clareza.",
 };
 

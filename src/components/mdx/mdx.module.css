@@ -90,6 +90,26 @@
     filter 0.8s var(--ease-out-expo);
 }
 .media[data-inview] .mediaImg { transform: none; }
+
+/* Real case imagery shows in color inside the B&W frame ("Mostrar em cor").
+   Same-module descendant selector, so it survives CSS-module hashing. Covers
+   on home / index stay graded — the case page is the reveal. */
+.colorScope .mediaImg {
+  filter: contrast(1.02) saturate(1.03);
+}
+.colorScope .mediaImg:hover {
+  filter: contrast(1.04) saturate(1.06);
+}
+/* Never crop a design deliverable — show the whole artwork, its own margins
+   ("o ar") intact. Full-frame images float on the frame; disable the parallax
+   drift so the letterbox stays symmetric instead of revealing uneven edges. */
+.colorScope .mediaImg {
+  object-fit: contain;
+}
+.colorScope .mediaPar {
+  inset: 0;
+  transform: none;
+}
 .mediaCanvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 
 /* ---------- figure: single image at full / wide / inset width ---------- */

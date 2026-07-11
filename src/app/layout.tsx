@@ -10,7 +10,7 @@ import { SiteFooter } from "@/components/chrome/SiteFooter";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://luanandrade.me"),
-  title: "Luan Andrade — Diretor de Arte & Brand Specialist",
+  title: "Luan Andrade, Diretor de Arte & Brand Specialist",
   description:
     "Direção de arte, marca, campanha e produto. Dez anos transformando complexidade em direção clara.",
   alternates: { canonical: "/" },
@@ -18,20 +18,20 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     siteName: "Luan Andrade",
-    title: "Luan Andrade — Diretor de Arte & Brand Specialist",
+    title: "Luan Andrade, Diretor de Arte & Brand Specialist",
     description: "Dez anos transformando complexidade em direção clara.",
     images: [
       {
         url: "/og.png",
         width: 1730,
         height: 909,
-        alt: "Luan Andrade — Diretor de Arte & Brand Specialist",
+        alt: "Luan Andrade, Diretor de Arte & Brand Specialist",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Luan Andrade — Diretor de Arte & Brand Specialist",
+    title: "Luan Andrade, Diretor de Arte & Brand Specialist",
     description: "Marca · Campanha · Produto",
     images: ["/og.png"],
   },

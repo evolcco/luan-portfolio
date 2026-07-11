@@ -7,7 +7,7 @@ export function SiteFooter() {
   return (
     <footer className={`cg ${styles.footer}`}>
       <div className={styles.top}>
-        <span className={`mono ${styles.brandK}`}>Luan Andrade — Diretor de Arte</span>
+        <span className={`mono ${styles.brandK}`}>Luan Andrade, Diretor de Arte</span>
         <a
           href="mailto:contato@luanandrade.me"
           className={`${styles.mail} link`}

@@ -4,7 +4,7 @@ import { getAllCases } from "@/lib/cases";
 import styles from "./work.module.css";
 
 export const metadata: Metadata = {
-  title: "Trabalho — Luan Andrade",
+  title: "Trabalho, Luan Andrade",
   description: "Índice de projetos: marca, campanha, UI/UX e identidade.",
 };
 

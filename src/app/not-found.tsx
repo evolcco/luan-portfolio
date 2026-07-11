@@ -7,7 +7,7 @@ export default function NotFound() {
       <div className={`mono ${styles.k}`}>Erro 404</div>
       <h1 className={styles.h}>Página não encontrada.</h1>
       <p className={styles.p}>
-        O endereço não existe ou foi movido. A estrutura continua — só essa página
+        O endereço não existe ou foi movido. A estrutura continua, só essa página
         saiu do grid.
       </p>
       <Link href="/" className={`mono link ${styles.home}`}>

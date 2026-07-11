@@ -4,9 +4,9 @@ import { Display } from "@/components/type/Display";
 import styles from "./sobre.module.css";
 
 export const metadata: Metadata = {
-  title: "Sobre — Luan Andrade",
+  title: "Sobre, Luan Andrade",
   description:
-    "Diretor de arte e especialista em marcas. Dez anos de identidade, campanha, produto e UI — com densidade em saúde.",
+    "Diretor de arte e especialista em marcas. Dez anos de identidade, campanha, produto e UI, com densidade em saúde.",
 };
 
 const CAPABILITIES = [
@@ -33,7 +33,7 @@ export default function Sobre() {
         </div>
         <Display text="Luan Andrade" weight={600} tracking={-0.025} fill={0.72} className={styles.title} />
         <p className={styles.lead} data-reveal style={{ "--rvd": "120ms" } as React.CSSProperties}>
-          Diretor de arte e especialista em marcas. Dez anos dando clareza — da
+          Diretor de arte e especialista em marcas. Dez anos dando clareza, da
           identidade à campanha, do produto à interface.
         </p>
       </section>
@@ -41,11 +41,11 @@ export default function Sobre() {
       <section className={`cg ${styles.body}`}>
         <p className={styles.p1} data-reveal style={{ "--rvd": "0ms" } as React.CSSProperties}>
           Comecei cedo, movido por curiosidade e pelo desejo de dominar tanto a
-          ferramenta quanto a estratégia. Design nunca foi só estética pra mim —
+          ferramenta quanto a estratégia. Design nunca foi só estética pra mim,
           é a forma de fazer uma ideia ser entendida e escolhida.
         </p>
         <p className={styles.p2} data-reveal style={{ "--rvd": "120ms" } as React.CSSProperties}>
-          Tenho densidade em saúde e farma — um setor que exige precisão e
+          Tenho densidade em saúde e farma, um setor que exige precisão e
           responsabilidade. Mas o método atravessa qualquer área: estrutura a
           serviço da mensagem, menos ruído, mais decisão.
         </p>
