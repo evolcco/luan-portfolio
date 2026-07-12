@@ -18,27 +18,22 @@
 .media {
   grid-column: 8 / 12;
   grid-row: 1 / 4;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   position: relative;
   overflow: hidden;
   background: #111214;
 }
+/* full artwork, no crop (matches the home cards) */
 .mediaPar {
   position: absolute;
-  inset: -8% 0;
-  will-change: transform;
-  transform: translate3d(0, var(--py, 0px), 0);
+  inset: 0;
 }
 .mediaImg {
-  object-fit: cover;
+  object-fit: contain;
   filter: contrast(1.04) brightness(1.02);
-  transform: scale(1.09);
-  transition:
-    transform var(--dur-media, 1100ms) var(--ease-out-quint),
-    filter 0.8s var(--ease-out-expo);
+  transition: filter 0.8s var(--ease-out-expo);
 }
-.media[data-inview] .mediaImg { transform: none; }
-.next:hover .mediaImg { transform: scale(1.05); filter: contrast(1.06) brightness(1.08); }
+.next:hover .mediaImg { filter: contrast(1.06) brightness(1.08); }
 
 .title { grid-column: 2 / 8; }
 
@@ -53,5 +48,5 @@
 @media (max-width: 639px) {
   .k, .title, .view { grid-column: 1 / 7; }
   .k, .view { padding-inline: var(--edge); }
-  .media { grid-column: 1 / 7; grid-row: auto; aspect-ratio: 16 / 10; margin-top: 0.5rem; }
+  .media { grid-column: 1 / 7; grid-row: auto; aspect-ratio: 16 / 9; margin-top: 0.5rem; }
 }
