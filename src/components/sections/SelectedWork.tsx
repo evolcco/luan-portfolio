@@ -4,7 +4,7 @@ import { getAllCases } from "@/lib/cases";
 import styles from "./SelectedWork.module.css";
 
 export function SelectedWork() {
-  const cases = getAllCases().slice(0, 3);
+  const cases = getAllCases().slice(0, 6);
 
   return (
     <section className={styles.work}>
