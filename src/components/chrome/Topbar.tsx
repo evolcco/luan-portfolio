@@ -8,7 +8,7 @@ export function Topbar() {
         Luan Andrade
       </Link>
       <span aria-hidden className={styles.role}>
-        Direção de Arte, Sistema
+        Diretor de Arte
       </span>
       <nav className={styles.nav} aria-label="Navegação principal">
         <Link href="/trabalho" className="link">Trabalho</Link>
