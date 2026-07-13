@@ -44,24 +44,33 @@ export function Intro() {
   useEffect(() => {
     const el = document.querySelector<HTMLElement>("[data-intro]");
     if (!el) return;
-    // rAF loop reading real window.scrollY (Lenis root mode keeps it live) —
-    // same approach as the Parallax component. Runs once synchronously so the
-    // initial state is set even if a rAF is cancelled by a remount.
-    let raf = 0;
     let last = -1;
-    const tick = () => {
+    let raf = 0;
+    // maps the first ~70% of a viewport of scroll to --t: 0→1
+    const apply = () => {
       const vh = window.innerHeight || 1;
-      // transition scrubs over the first ~70% of a viewport of scroll
       const t = Math.min(Math.max(window.scrollY / (vh * 0.7), 0), 1);
       if (t !== last) {
         last = t;
         el.style.setProperty("--t", t.toFixed(4));
         el.dataset.active = t > 0.85 ? "1" : "0";
       }
-      raf = requestAnimationFrame(tick);
     };
-    tick();
-    return () => cancelAnimationFrame(raf);
+    // scroll events drive it reliably (Lenis root mode fires native scroll);
+    // the rAF loop adds smoothness where it runs.
+    const loop = () => {
+      apply();
+      raf = requestAnimationFrame(loop);
+    };
+    apply();
+    window.addEventListener("scroll", apply, { passive: true });
+    window.addEventListener("resize", apply, { passive: true });
+    loop();
+    return () => {
+      window.removeEventListener("scroll", apply);
+      window.removeEventListener("resize", apply);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   const columns = Array.from({ length: COLS }, (_, c) =>
