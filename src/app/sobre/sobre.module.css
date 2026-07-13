@@ -6,15 +6,26 @@
 
 .back { grid-area: 1 / 2 / 2 / 5; align-self: end; color: var(--graphite); padding-bottom: var(--label-gap); }
 .k { grid-area: 3 / 2 / 4 / 6; align-self: end; color: var(--graphite); padding-bottom: var(--label-gap); }
-.title { grid-area: 4 / 2 / 6 / 13; }
+.title { grid-area: 4 / 2 / 6 / 9; }
 .lead {
-  grid-area: 6 / 2 / 7 / 9;
+  grid-area: 6 / 2 / 7 / 8;
   align-self: start;
   font-size: var(--step-lead);
   line-height: 1.4;
   color: color-mix(in srgb, var(--paper) 82%, transparent);
   max-width: 46ch;
   text-wrap: pretty;
+}
+.portrait {
+  grid-area: 2 / 9 / 8 / 13;
+  position: relative;
+  overflow: hidden;
+  background: #111214;
+  border-radius: 3px;
+}
+.portraitImg {
+  object-fit: cover;
+  object-position: 50% 30%;
 }
 
 .body { position: relative; padding-block: var(--space-l); }
@@ -62,6 +73,7 @@
   .k { grid-area: 3 / 1 / 4 / 7; padding-inline: var(--edge); }
   .title { grid-area: 5 / 1 / 7 / 7; }
   .lead { grid-area: 8 / 1 / 10 / 7; padding-inline: var(--edge); }
+  .portrait { grid-area: 11 / 1 / 12 / 7; aspect-ratio: 3 / 4; margin: var(--space-s) var(--edge) 0; }
   .p1 { grid-area: 1 / 1 / 3 / 7; padding-inline: var(--edge); }
   .p2 { grid-area: 3 / 1 / 5 / 7; padding-inline: var(--edge); }
   .capsK { grid-area: 6 / 1 / 7 / 7; padding-inline: var(--edge); }

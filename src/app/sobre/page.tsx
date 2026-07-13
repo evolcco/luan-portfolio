@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Display } from "@/components/type/Display";
 import styles from "./sobre.module.css";
 
@@ -36,6 +37,20 @@ export default function Sobre() {
           Diretor de arte e especialista em marcas. Dez anos dando clareza, da
           identidade à campanha, do produto à interface.
         </p>
+        <div
+          className={styles.portrait}
+          data-reveal
+          style={{ "--rvd": "200ms" } as React.CSSProperties}
+        >
+          <Image
+            src="/images/luan.jpg"
+            alt="Retrato de Luan Andrade"
+            fill
+            sizes="(max-width: 639px) 100vw, 34vw"
+            priority
+            className={styles.portraitImg}
+          />
+        </div>
       </section>
 
       <section className={`cg ${styles.body}`}>
