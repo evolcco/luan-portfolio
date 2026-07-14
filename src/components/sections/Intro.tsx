@@ -35,14 +35,14 @@ export function Intro() {
   useEffect(() => {
     const flash = setInterval(
       () => setIdx((i) => Math.min(i + 1, FLASH.length - 1)),
-      115,
+      165,
     );
     const t1 = setTimeout(() => {
       clearInterval(flash);
       setPhase("grow");
-    }, 1700);
-    const t2 = setTimeout(() => setPhase("expand"), 2150);
-    const t3 = setTimeout(() => setPhase("hero"), 2750);
+    }, 2400);
+    const t2 = setTimeout(() => setPhase("expand"), 3050);
+    const t3 = setTimeout(() => setPhase("hero"), 3800);
     return () => {
       clearInterval(flash);
       clearTimeout(t1);
