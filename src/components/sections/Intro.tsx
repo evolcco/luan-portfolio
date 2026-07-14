@@ -33,13 +33,16 @@ export function Intro() {
   const [idx, setIdx] = useState(0);
 
   useEffect(() => {
-    const flash = setInterval(() => setIdx((i) => i + 1), 110);
+    const flash = setInterval(
+      () => setIdx((i) => Math.min(i + 1, FLASH.length - 1)),
+      115,
+    );
     const t1 = setTimeout(() => {
       clearInterval(flash);
       setPhase("grow");
-    }, 1650);
-    const t2 = setTimeout(() => setPhase("expand"), 2100);
-    const t3 = setTimeout(() => setPhase("hero"), 2700);
+    }, 1700);
+    const t2 = setTimeout(() => setPhase("expand"), 2150);
+    const t3 = setTimeout(() => setPhase("hero"), 2750);
     return () => {
       clearInterval(flash);
       clearTimeout(t1);
@@ -68,16 +71,16 @@ export function Intro() {
         }}
       >
         <div className={styles.frame} style={{ width: FRAME_W, height: FRAME_H }}>
-          {/* all preloaded + stacked (no remount pop-in); the active one flashes in */}
-          {FLASH.map((src, i) => {
-            const on = phase === "flash" && i === idx % FLASH.length;
-            return (
+          {/* all preloaded + stacked; each grows scale 0→1 from centre (bezier)
+             over the previous, building a stack. */}
+          {(phase === "flash" || phase === "grow") &&
+            FLASH.map((src, i) => (
               <div
                 key={src}
                 className={styles.flash}
                 style={{
-                  opacity: on ? 1 : 0,
-                  transform: on ? "scale(1)" : "scale(1.08)",
+                  zIndex: i + 1,
+                  transform: i <= idx ? "scale(1)" : "scale(0)",
                 }}
               >
                 <Image
@@ -90,8 +93,7 @@ export function Intro() {
                   className={styles.flashImg}
                 />
               </div>
-            );
-          })}
+            ))}
         </div>
         <div className={styles.solid} style={solidStyle} />
       </div>
