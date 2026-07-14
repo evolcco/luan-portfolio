@@ -1,52 +1,42 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Hero } from "@/components/sections/Hero";
 import styles from "./Intro.module.css";
 
-/* Curated, mixed case artwork for the marquee floor. */
-const IMAGES = [
+/* Hero-worthy, human-centred case key visuals — they survive a full-bleed crop. */
+const SLIDES = [
   "/images/cases/key-visual-collection/11.png",
-  "/images/cases/contclaro/07.png",
   "/images/cases/key-visual-collection/03.png",
-  "/images/cases/instituto-cigo/cover.jpg",
-  "/images/cases/key-visual-collection/13.png",
-  "/images/cases/bb-cosmeticos/08.png",
-  "/images/cases/key-visual-collection/06.png",
-  "/images/cases/amgen-pharma-experience/cover.jpg",
-  "/images/cases/key-visual-collection/10.png",
   "/images/cases/saude-individualizada-branding/07.png",
-  "/images/cases/key-visual-collection/05.png",
-  "/images/cases/nucleart/cover.jpg",
-  "/images/cases/key-visual-collection/12.png",
-  "/images/cases/life4u/cover.jpg",
-  "/images/cases/key-visual-collection/07.png",
-  "/images/cases/caminhos-pos-avc/cover.jpg",
-  "/images/cases/key-visual-collection/16.png",
-  "/images/cases/bb-cosmeticos/06.jpg",
-  "/images/cases/key-visual-collection/01.png",
-  "/images/cases/mitsubishi-app/01.webp",
-  "/images/cases/key-visual-collection/14.png",
-  "/images/cases/saude-individualizada-branding/11.png",
-  "/images/cases/key-visual-collection/15.png",
-  "/images/cases/instituto-cigo/s02.png",
-  "/images/cases/key-visual-collection/08.png",
-  "/images/cases/contclaro/06.png",
-  "/images/cases/key-visual-collection/04.png",
-  "/images/cases/nucleart/s06.png",
+  "/images/cases/key-visual-collection/10.png",
+  "/images/cases/instituto-cigo/cover.jpg",
+  "/images/cases/key-visual-collection/06.png",
+  "/images/cases/bb-cosmeticos/08.png",
+  "/images/cases/key-visual-collection/13.png",
 ];
 
-const COLS = 5;
-const DURATIONS = ["52s", "40s", "58s", "44s", "48s"];
+const SLIDE_MS = 4800;
 
 export function Intro() {
+  const [active, setActive] = useState(0);
+
+  // slideshow cycle
+  useEffect(() => {
+    const id = setInterval(
+      () => setActive((a) => (a + 1) % SLIDES.length),
+      SLIDE_MS,
+    );
+    return () => clearInterval(id);
+  }, []);
+
+  // scroll → hero transition (--t: 0→1 over the first ~70% of a viewport)
   useEffect(() => {
     const el = document.querySelector<HTMLElement>("[data-intro]");
     if (!el) return;
     let last = -1;
     let raf = 0;
-    // maps the first ~70% of a viewport of scroll to --t: 0→1
     const apply = () => {
       const vh = window.innerHeight || 1;
       const t = Math.min(Math.max(window.scrollY / (vh * 0.7), 0), 1);
@@ -56,8 +46,6 @@ export function Intro() {
         el.dataset.active = t > 0.85 ? "1" : "0";
       }
     };
-    // scroll events drive it reliably (Lenis root mode fires native scroll);
-    // the rAF loop adds smoothness where it runs.
     const loop = () => {
       apply();
       raf = requestAnimationFrame(loop);
@@ -73,37 +61,27 @@ export function Intro() {
     };
   }, []);
 
-  const columns = Array.from({ length: COLS }, (_, c) =>
-    IMAGES.filter((_, i) => i % COLS === c),
-  );
-
   return (
     <div data-intro className={styles.intro} data-active="0">
       <div className={styles.stage}>
-        <div className={styles.marquee} aria-hidden>
-          <div className={styles.grid}>
-            {columns.map((col, c) => (
-              <div
-                key={c}
-                className={styles.col}
-                data-dir={c % 2 ? "down" : "up"}
-                style={{ "--dur": DURATIONS[c] } as React.CSSProperties}
-              >
-                {[...col, ...col].map((src, i) => (
-                  <div key={`${src}-${i}`} className={styles.cell}>
-                    <Image
-                      src={src}
-                      alt=""
-                      fill
-                      sizes="30vw"
-                      loading="eager"
-                      className={styles.cellImg}
-                    />
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
+        <div className={styles.slideshow} aria-hidden>
+          {SLIDES.map((src, i) => (
+            <div
+              key={src}
+              className={styles.slide}
+              style={{ opacity: i === active ? 1 : 0 }}
+            >
+              <Image
+                src={src}
+                alt=""
+                fill
+                sizes="100vw"
+                priority={i === 0}
+                loading="eager"
+                className={styles.slideImg}
+              />
+            </div>
+          ))}
         </div>
 
         <div className={styles.scrim} aria-hidden />
